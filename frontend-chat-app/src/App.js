@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Div, Button } from "atomize";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Div d="flex">
+      <Button
+      shadow="2"
+      rounded="circle"
+      bg="info900"
+      hoverBg="warning600"
+      hoverShadow="4"
+      >Good</Button>
+    </Div>
   );
 }
 
