@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import RegForm from "./RegForm"
+import { connect } from "react-redux"
 import { Div, Button, Modal, Icon, Text } from "atomize";
 
-export default class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +26,7 @@ export default class Login extends Component {
       this.setState({ isSubmitting: true });
       onClose();
     }, 600);
-    console.log({name: this.state.name, email: this.state.email, password: this.state.password})
+    this.props.test({name: this.state.name, email: this.state.email, password: this.state.password})
   }
   render() {
     const { isOpen, onClose } = this.props;
@@ -75,3 +76,7 @@ export default class Login extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+    test: user => dispatch({type: "TEST", payload: user})
+})
+export default connect(null, mapDispatchToProps)(Signup)
