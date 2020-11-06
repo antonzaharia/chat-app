@@ -1,21 +1,31 @@
 import React, { Component } from "react";
+import RegForm from "./RegForm"
 import { Div, Button, Modal, Icon, Text } from "atomize";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSubmitting: false,
+        name: "",
+        email: "",
+        password: "",
+        isSubmitting: false,
     };
     this.onClickSubmit = this.onClickSubmit.bind(this);
   }
-  onClickSubmit() {
+  onChange = event => {
+      this.setState({[event.target.name]: event.target.value})
+  }
+  onClickSubmit = (event) => {
+      event.persist()
+    event.preventDefault()
     const { onClose } = this.props;
     this.setState({ isSubmitting: true });
     setTimeout(() => {
-      this.setState({ isSubmitting: false });
+      this.setState({ isSubmitting: true });
       onClose();
     }, 600);
+    console.log({name: this.state.name, email: this.state.email, password: this.state.password})
   }
   render() {
     const { isOpen, onClose } = this.props;
@@ -43,6 +53,7 @@ export default class Login extends Component {
         >
           Signup.
         </Text>
+        <RegForm signup={true} onChange={this.onChange}/>
         <Div d="flex" justify="flex-end">
           <Button
             onClick={onClose}
