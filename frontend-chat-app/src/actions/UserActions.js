@@ -1,4 +1,4 @@
-export function login (user) {
+export function signup (user) {
     return(dispatch) => {
         fetch("http://localhost:3000/users", {
             method: "POST",

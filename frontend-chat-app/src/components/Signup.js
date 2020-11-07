@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RegForm from "./RegForm"
 import { connect } from "react-redux"
+import { signup } from '../actions/UserActions'
 import { Div, Button, Modal, Icon, Text } from "atomize";
 
 class Signup extends Component {
@@ -26,7 +27,7 @@ class Signup extends Component {
       this.setState({ isSubmitting: true });
       onClose();
     }, 600);
-    this.props.test({name: this.state.name, email: this.state.email, password: this.state.password})
+    this.props.signup({name: this.state.name, email: this.state.email, password: this.state.password})
   }
   render() {
     const { isOpen, onClose } = this.props;
@@ -77,6 +78,6 @@ class Signup extends Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-    test: user => dispatch({type: "TEST", payload: user})
+    signup: user => dispatch(signup(user))
 })
 export default connect(null, mapDispatchToProps)(Signup)
