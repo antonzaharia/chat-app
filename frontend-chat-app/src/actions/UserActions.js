@@ -7,7 +7,6 @@ export function signup (user) {
             body: JSON.stringify(user)
         }).then((resp) => resp.json())
         .then((result) => {
-            console.log(result)
             if("errors" in result) {
                 dispatch({type: "FAILED", payload: result.errors})
             } else {

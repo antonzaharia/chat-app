@@ -9,11 +9,14 @@ export default function UserReducer(
       return {
         ...state,
         user: {
-          name: action.payload.name,
-          email: action.payload.email
-        },
-        errors: action.payload.errors,
+          check: action.payload
+        }
       };
+      case "FAILED":
+        return {
+          ...state,
+          errors: action.payload
+        }
     default:
       return state;
   }
