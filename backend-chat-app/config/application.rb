@@ -36,11 +36,11 @@ module BackendChatApp
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'http://localhost:3001'
         resource '*',
           :headers => :any,
-          :methods => [:get, :post, :delete, :put, :patch],
-          :max_age => 0
+          :methods => [:get, :post, :delete, :put, :patch, :options, :head],
+          credentials: true
       end
     end
   end

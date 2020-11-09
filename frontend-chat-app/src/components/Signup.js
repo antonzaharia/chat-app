@@ -20,7 +20,6 @@ class Signup extends Component {
       this.setState({[event.target.name]: event.target.value})
   }
   onClickSubmit = (event) => {
-      event.persist()
     event.preventDefault()
     const { onClose } = this.props;
     this.setState({ isSubmitting: true });

@@ -64,6 +64,7 @@ export default function RegForm({ signup, onChange }) {
         onChange={onChange}
         placeholder="Re-type password"
         p={{ x: "2.5rem" }}
+        type="password"
         name="password_confirmation"
         prefix={
           <Icon
