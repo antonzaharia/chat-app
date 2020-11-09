@@ -16,7 +16,7 @@ export function signup (user) {
     }
 }
 
-const checkLoggedInStatus = () => {
+export const checkLoggedInStatus = () => {
     return (dispatch) => {
         fetch("http://localhost:3000/logged_in", {
             credentials: "include",
