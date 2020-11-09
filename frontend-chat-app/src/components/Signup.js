@@ -11,6 +11,7 @@ class Signup extends Component {
         name: "",
         email: "",
         password: "",
+        password_confirmation: "",
         isSubmitting: false,
     };
     this.onClickSubmit = this.onClickSubmit.bind(this);

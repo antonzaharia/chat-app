@@ -60,6 +60,24 @@ export default function RegForm({ signup, onChange }) {
           />
         }
       />
+      {!signup ? "" : <Input
+        onChange={onChange}
+        placeholder="Re-type password"
+        p={{ x: "2.5rem" }}
+        name="password_confirmation"
+        prefix={
+          <Icon
+            name="EyeSolid"
+            color="danger800"
+            size="16px"
+            cursor="pointer"
+            pos="absolute"
+            top="50%"
+            left="0.75rem"
+            transform="translateY(-50%)"
+          />
+        }
+      />}
     </>
   );
 }
