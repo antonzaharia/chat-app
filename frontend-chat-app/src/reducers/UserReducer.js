@@ -1,5 +1,5 @@
 export default function UserReducer(
-  state = { currentUser: null, requesting: false, errors: false , logged_in: false},
+  state = { currentUser: null, requesting: false, errors: false , loggedIn: false},
   action
 ) {
   switch (action.type) {
@@ -12,10 +12,11 @@ export default function UserReducer(
         loggedIn: true
       }
     case "SET_CURRENT_USER":
+      console.log(action.payload)
       return {
         ...state, 
         currentUser: action.payload.user,
-        loggedIn: true
+        loggedIn: action.payload.logged_in
       }
     case "FAILED":
         return {

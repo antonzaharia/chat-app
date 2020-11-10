@@ -12,16 +12,17 @@ class SessionsController < ApplicationController
         user: @user
       }
     else
-      render ison: {status 401}
+      render json: {status: 401}
     end
   end
 
   def logged_in
+    set_current_user
     if @current_user
       render json: {
         status: :created,
         logged_in: true,
-        user: @user
+        user: @current_user
       }
     else
       render json: {

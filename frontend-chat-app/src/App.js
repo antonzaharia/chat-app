@@ -6,7 +6,7 @@ import { checkLoggedInStatus } from "./actions/UserActions";
 import Header from "./containers/Header";
 class App extends Component {
   componentDidMount() {
-    checkLoggedInStatus()
+    this.props.checkLoggedInStatus()
   }
   render() {
     return (
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
 });
 const mapDispatchToProps = (dispatch) => ({
-  checkLoggedInStatus: (data) => dispatch(checkLoggedInStatus(data)),
+  checkLoggedInStatus: () => dispatch(checkLoggedInStatus()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
