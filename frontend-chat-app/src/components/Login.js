@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import RegForm from "./RegForm"
 import { Div, Button, Modal, Icon, Text } from "atomize";
+import { connect } from "react-redux";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,3 +77,7 @@ export default class Login extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  login: user => dispatch(login(user))
+})
+export default connect(null, mapDispatchToProps)(Login)

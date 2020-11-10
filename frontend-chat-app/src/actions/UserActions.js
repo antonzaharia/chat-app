@@ -15,6 +15,17 @@ export function signup (user) {
         })
     }
 }
+export function login(user) {
+    return(dispatch) => {
+        fetch("http://localhost:3000/sessions", {
+            method: "POST",
+            credentials: "include",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        }).then(resp => resp.json())
+        .then(data => dispatch({type: "LOGIN", payload: data}))
+    }
+}
 
 export const checkLoggedInStatus = () => {
     return (dispatch) => {
