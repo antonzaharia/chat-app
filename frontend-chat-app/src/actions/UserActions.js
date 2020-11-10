@@ -17,7 +17,7 @@ export function signup (user) {
 }
 export function login(user) {
     return(dispatch) => {
-        fetch("http://localhost:3000/sessions", {
+        fetch("http://localhost:3000/login", {
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
