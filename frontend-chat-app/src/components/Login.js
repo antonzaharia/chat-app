@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RegForm from "./RegForm"
+import { login } from "../actions/UserActions"
 import { Div, Button, Modal, Icon, Text } from "atomize";
 import { connect } from "react-redux";
 
@@ -24,7 +25,7 @@ class Login extends Component {
       this.setState({ isSubmitting: false });
       onClose();
     }, 600);
-    console.log({email: this.state.email, password: this.state.password})
+    this.props.login({email: this.state.email, password: this.state.password})
   }
   render() {
     const { isOpen, onClose } = this.props;
