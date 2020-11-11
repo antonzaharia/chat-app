@@ -54,7 +54,7 @@ class Login extends Component {
           Login.
         </Text>
         <form onSubmit={this.onClickSubmit}>
-        <RegForm />
+        <RegForm  onChange={this.onChange}/>
         <Div d="flex" justify="flex-end">
           <Button
             onClick={onClose}
