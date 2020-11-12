@@ -8,7 +8,4 @@ module CurrentUserConcern
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
-    def hard_set_user(user)
-        @current_user = user
-    end
 end
