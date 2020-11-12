@@ -1,7 +1,9 @@
 import React from "react";
 import { Icon, Div, Text, Button } from "atomize";
+import { connect } from 'react-redux'
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import { logout } from "../actions/UserActions";
 
 class Header extends React.Component {
   constructor(props) {
@@ -35,6 +37,14 @@ class Header extends React.Component {
         >
           Signup
         </Button>
+        <Button
+          bg="info700"
+          hoverBg="info600"
+          m={"0 auto"}
+          onClick={() => this.setState({ showSignup: true })}
+        >
+          Logout
+        </Button>
         <Login
           isOpen={this.state.showLogin}
           onClose={() => this.setState({ showLogin: false })}
@@ -47,5 +57,8 @@ class Header extends React.Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout)
+})
 
-export default Header;
+export default connect(null, mapDispatchToProps)(Header);

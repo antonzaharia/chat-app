@@ -27,6 +27,17 @@ export function login(user) {
     }
 }
 
+export function logout() {
+    return(dispatch) => {
+        fetch("http://localhost:3000/sessions", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(resp => resp.json())
+        .then(data => dispatch({type: "LOGOUT", payload: data}))
+    }
+}
+
 export const checkLoggedInStatus = () => {
     return (dispatch) => {
         fetch("http://localhost:3000/logged_in", {
