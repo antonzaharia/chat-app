@@ -41,7 +41,7 @@ class Header extends React.Component {
           bg="info700"
           hoverBg="info600"
           m={"0 auto"}
-          onClick={() => this.setState({ showSignup: true })}
+          onClick={() => this.props.logout()}
         >
           Logout
         </Button>
@@ -58,7 +58,7 @@ class Header extends React.Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout)
+  logout: () => dispatch(logout())
 })
 
 export default connect(null, mapDispatchToProps)(Header);

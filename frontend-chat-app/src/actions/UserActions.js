@@ -30,8 +30,9 @@ export function login(user) {
 export function logout() {
     return(dispatch) => {
         fetch("http://localhost:3000/sessions", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"}
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({logout: true})
         })
         .then(resp => resp.json())
         .then(data => dispatch({type: "LOGOUT", payload: data}))

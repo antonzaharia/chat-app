@@ -18,6 +18,7 @@ export default function UserReducer(
         loggedIn: action.payload.logged_in
       }
     case "LOGOUT": 
+    console.log(action.payload)
       return {
         ...state, 
         logged_in: false
