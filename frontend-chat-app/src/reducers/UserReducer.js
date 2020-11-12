@@ -12,11 +12,15 @@ export default function UserReducer(
         loggedIn: true
       }
     case "SET_CURRENT_USER":
-      console.log(action.payload)
       return {
         ...state, 
         currentUser: action.payload.user,
         loggedIn: action.payload.logged_in
+      }
+    case "LOGOUT": 
+      return {
+        ...state, 
+        logged_in: false
       }
     case "FAILED":
         return {
