@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { logout } from "../actions/UserActions";
+import Footer from "./Footer"
 
 class Header extends React.Component {
   constructor(props) {
@@ -53,6 +54,7 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
+        <Footer />
       </Div>
     );
   }
