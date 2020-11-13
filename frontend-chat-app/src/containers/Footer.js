@@ -5,10 +5,11 @@ export default function Footer() {
     return (
         <Div
         pos="fixed"
-        bottom="0px"
+        bottom="10px"
         align="center"
-        minW="100%"
+        left={{ xs: '35%', lg: '46%' }}
         >
+            <hr />
             <Text
             ><span>&#174;</span> 2020 Chat App </Text>
         </Div>
