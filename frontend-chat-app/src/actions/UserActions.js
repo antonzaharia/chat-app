@@ -31,8 +31,8 @@ export function logout() {
     return(dispatch) => {
         fetch("http://localhost:3000/sessions", {
             method: "DELETE",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({logout: true})
+            credentials: "include",
+            headers: {"Content-Type": "application/json"}
         })
         .then(resp => resp.json())
         .then(data => dispatch({type: "LOGOUT", payload: data}))
