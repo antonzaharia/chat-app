@@ -6,17 +6,22 @@ class UsersController < ApplicationController
 
         if user.save
             session[:user_id] = user.id 
-            set_current_user
+            payload = {user_id: user.id}
+            token = encode_token(payload)
             render json: {
                 status: :created,
                 user: user,
-                logged_in: true
+                logged_in: true,
+                jwt: token
             }
         else
             render json: {
                 status: 500,
-                errors: user.errors
+                errors: user.errors.full_messages
             }
         end
+
+
+
     end
 end
