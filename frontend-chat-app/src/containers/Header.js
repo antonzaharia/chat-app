@@ -5,6 +5,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { logout } from "../actions/UserActions";
 import Footer from "./Footer"
+import RegButons from '../components/RegButons'
 
 class Header extends React.Component {
   constructor(props) {
@@ -21,31 +22,19 @@ class Header extends React.Component {
         <Text tag="h1" textSize="display1">
           Welcome to ChatApp <Icon name="Email" size="30px" />
         </Text>
-
-        <Button
-          bg="info700"
-          hoverBg="info600"
+        <RegButons
+          loginClick={() => this.setState({ showLogin: true })}
+          signupClick={() => this.setState({ showSignup: true })}
+        />
+        {!this.props.loggedIn ? "" : <Button
+          bg="brand900"
+          hoverBg="brand700"
           m={"0 auto"}
-          onClick={() => this.setState({ showLogin: true })}
-        >
-          Login
-        </Button>
-        <Button
-          bg="info700"
-          hoverBg="info600"
-          m={"0 auto"}
-          onClick={() => this.setState({ showSignup: true })}
-        >
-          Signup
-        </Button>
-        <Button
-          bg="info700"
-          hoverBg="info600"
-          m={"0 auto"}
+          hoverShadow="4"
           onClick={() => this.props.logout()}
         >
           Logout
-        </Button>
+        </Button>}
         <Login
           isOpen={this.state.showLogin}
           onClose={() => this.setState({ showLogin: false })}
@@ -62,5 +51,7 @@ class Header extends React.Component {
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 })
-
-export default connect(null, mapDispatchToProps)(Header);
+const mapStateToProps = state => ({
+  loggedIn: state.user.loggedIn
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

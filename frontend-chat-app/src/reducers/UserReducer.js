@@ -21,7 +21,7 @@ export default function UserReducer(
     console.log(action.payload)
       return {
         ...state, 
-        logged_in: false
+        loggedIn: false
       }
     case "FAILED":
         return {
