@@ -22,10 +22,10 @@ class Header extends React.Component {
         <Text tag="h1" textSize="display1">
           Welcome to ChatApp <Icon name="Email" size="30px" />
         </Text>
-        <RegButons
+        {this.props.loggedIn ? "" : <RegButons
           loginClick={() => this.setState({ showLogin: true })}
           signupClick={() => this.setState({ showSignup: true })}
-        />
+        />}
         {!this.props.loggedIn ? "" : <Button
           bg="brand900"
           hoverBg="brand700"
