@@ -23,7 +23,7 @@ export function login(user) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         }).then(resp => resp.json())
-        .then(data => dispatch({type: "LOGIN", payload: data}))
+        .then(data => dispatch(checkStatus("LOGIN", data)))
     }
 }
 
@@ -52,3 +52,12 @@ const setCurrentUser = (data) => ({
     type: "SET_CURRENT_USER",
     payload: data
 })
+const checkStatus = (type, data) => {
+    if(data.status === 401){
+        return {type: "LOGIN_ERROR", payload: "Incorrect Credentials"}
+    } else if (data.status === 500 ){
+        return {type: "SIGNUP_ERROR", payload: data.errors}
+    } else {
+        return {type: type, payload: data}
+    }
+}
