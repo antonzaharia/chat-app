@@ -21,6 +21,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
   loggedIn: state.user.loggedIn,
+  errors: state.user.errors
 });
 const mapDispatchToProps = (dispatch) => ({
   checkLoggedInStatus: () => dispatch(checkLoggedInStatus()),

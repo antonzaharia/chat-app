@@ -24,7 +24,6 @@ export default function UserReducer(
         loggedIn: false
       }
     case "REG_ERROR":
-      console.log(action.payload)
         return {
           ...state,
           errors: action.payload
