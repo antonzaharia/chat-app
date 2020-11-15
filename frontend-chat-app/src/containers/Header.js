@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { logout } from "../actions/UserActions";
-import Errors from "../components/Error"
+// import Errors from "../components/Error"
 import Footer from "./Footer"
 import RegButons from '../components/RegButons'
 
@@ -44,7 +44,7 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
-        <Errors errors={this.props.errors}/>
+        {/* <Errors errors={this.props.errors}/> */}
         <Footer />
       </Div>
     );
