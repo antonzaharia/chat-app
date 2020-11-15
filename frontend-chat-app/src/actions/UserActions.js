@@ -6,13 +6,7 @@ export function signup (user) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         }).then((resp) => resp.json())
-        .then((result) => {
-            if("errors" in result) {
-                dispatch({type: "FAILED", payload: result.errors})
-            } else {
-                dispatch({type: "SIGNUP", payload: result})
-            }
-        })
+        .then((data) => dispatch(checkStatus("SIGNUP", data)))
     }
 }
 export function login(user) {
@@ -54,10 +48,10 @@ const setCurrentUser = (data) => ({
 })
 const checkStatus = (type, data) => {
     if(data.status === 401){
-        return {type: "LOGIN_ERROR", payload: "Incorrect Credentials"}
-    } else if (data.status === 500 ){
-        return {type: "SIGNUP_ERROR", payload: data.errors}
-    } else {
+        return {type: "REG_ERROR", payload: ["Incorrect Credentials"]}
+    } else if (data.status === 500){
+        return {type: "REG_ERROR", payload: [...data.errors]}
+    } else if (data.status === "created"){
         return {type: type, payload: data}
     }
 }

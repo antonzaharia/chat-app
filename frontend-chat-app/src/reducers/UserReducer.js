@@ -18,17 +18,19 @@ export default function UserReducer(
         loggedIn: action.payload.logged_in
       }
     case "LOGOUT": 
-    console.log(action.payload)
       return {
         ...state, 
         currentUser: null,
         loggedIn: false
       }
-    case "FAILED":
+    case "REG_ERROR":
+      console.log(action.payload)
         return {
           ...state,
           errors: action.payload
         }
+    case "REMOVE_ERRORS":
+      return {...state, errors: false}
     default:
       return state;
   }
