@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :conversations
   get '/logged_in', to: "sessions#logged_in"
   post '/login', to: "sessions#create"
   delete '/sessions', to: "sessions#destroy"
