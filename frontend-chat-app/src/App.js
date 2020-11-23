@@ -4,9 +4,21 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { checkLoggedInStatus } from "./actions/UserActions";
 import Header from "./containers/Header";
+import { ActionCable } from 'actioncable';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: []
+    }
+    this.cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+  }
+  
   componentDidMount() {
     this.props.checkLoggedInStatus()
+    this.fetch
+    this.createSubscription()
   }
   render() {
     return (
