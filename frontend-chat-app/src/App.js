@@ -20,6 +20,12 @@ class App extends Component {
     this.fetch
     this.createSubscription()
   }
+
+  fetchMessages = () => {
+    fetch('http://localhost:3000/messages')
+      .then(res => res.json())
+      .then(messages => this.setState({ messages: messages });
+  }
   render() {
     return (
       <Container d="flex" justify="center">
