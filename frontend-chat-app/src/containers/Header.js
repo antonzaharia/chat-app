@@ -3,6 +3,7 @@ import { Icon, Div, Text, Button, Notification } from "atomize";
 import { connect } from "react-redux";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import Content from "../components/Content";
 import { logout } from "../actions/UserActions";
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
@@ -18,7 +19,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Div m={{ t: "30px" }}>
+      <Div d="flex">
         <Notification
           isOpen={this.props.errors}
           m={{ r: "0.5rem" }}
@@ -26,32 +27,37 @@ class Header extends React.Component {
           bg="danger700"
           onClose={this.props.removeErrors}
         >
-          {this.props.errors ? this.props.errors.map(error => <p>{error}</p>) : ""}
+          {this.props.errors
+            ? this.props.errors.map((error) => <p>{error}</p>)
+            : ""}
         </Notification>
-        <Text tag="h1" textSize="display1">
-          Welcome to ChatApp <Icon name="Email" size="30px" />
+        <Text tag="h1" textSize={{ xs: "body", md: "display1" }} w={{xs: "100px", md: "180px"}} pos="fixed" left="10px">
+          Welcome to ChatApp <Icon name="Email" size={{ xs: "15px", md: "30px"}} />
         </Text>
-        {this.props.loggedIn ? (
-          ""
-        ) : (
-          <RegButons
-            loginClick={() => this.setState({ showLogin: true })}
-            signupClick={() => this.setState({ showSignup: true })}
-          />
-        )}
-        {!this.props.loggedIn ? (
-          ""
-        ) : (
-          <Button
-            bg="brand900"
-            hoverBg="brand700"
-            m={"0 auto"}
-            hoverShadow="4"
-            onClick={() => this.props.logout()}
-          >
-            Logout
-          </Button>
-        )}
+          {this.props.loggedIn ? (
+            ""
+          ) : (
+            <RegButons
+              loginClick={() => this.setState({ showLogin: true })}
+              signupClick={() => this.setState({ showSignup: true })}
+            />
+          )}
+          {!this.props.loggedIn ? (
+            ""
+          ) : (
+            <Div d="flex" pos="fixed" right="0px" p="10px">
+              
+              <Button
+              bg="brand900"
+              hoverBg="brand700"
+              m={"0 auto"}
+              hoverShadow="4"
+              onClick={() => this.props.logout()}
+            >
+              Logout
+            </Button>
+            </Div>
+          )}
         <Login
           isOpen={this.state.showLogin}
           onClose={() => this.setState({ showLogin: false })}
@@ -60,6 +66,7 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
+        <Content />
         <Footer />
       </Div>
     );
@@ -70,6 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
   removeErrors: () => dispatch({ type: "REMOVE_ERRORS" }),
 });
 const mapStateToProps = (state) => ({
+  user: state.user.currentUser,
   loggedIn: state.user.loggedIn,
   errors: state.user.errors,
 });

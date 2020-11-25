@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "atomize";
+import { Div, Button } from "atomize";
 
 export default function RegButons({loginClick, signupClick}) {
   return (
-    <div>
+    <Div d="flex" pos="fixed" right="0px" p="10px">
       <Button
         bg="info700"
         hoverBg="info600"
@@ -22,6 +22,6 @@ export default function RegButons({loginClick, signupClick}) {
       >
         Signup
       </Button>
-    </div>
+    </Div>
   );
 }

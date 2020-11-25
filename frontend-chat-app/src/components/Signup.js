@@ -58,6 +58,7 @@ class Signup extends Component {
         <RegForm signup={true} onChange={this.onChange}/>
         <Div d="flex" justify="flex-end">
           <Button
+            type="reset"
             onClick={onClose}
             bg="gray200"
             textColor="medium"

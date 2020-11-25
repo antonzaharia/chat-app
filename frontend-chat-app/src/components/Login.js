@@ -57,6 +57,7 @@ class Login extends Component {
         <RegForm  onChange={this.onChange}/>
         <Div d="flex" justify="flex-end">
           <Button
+            type="reset"
             onClick={onClose}
             bg="gray200"
             textColor="medium"
