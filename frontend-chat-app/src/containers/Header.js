@@ -46,7 +46,7 @@ class Header extends React.Component {
             ""
           ) : (
             <Div d="flex" pos="fixed" right="0px" p="10px">
-              
+              <Text m="8px">{this.props.user.name}</Text>
               <Button
               bg="brand900"
               hoverBg="brand700"
