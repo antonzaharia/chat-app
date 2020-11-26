@@ -7,11 +7,14 @@ class MessagesController < ApplicationController
 
     def create
         message = Message.new(message_params)
+        conversation = Conversation.find(message_params[:conversation_id])
         message.user = @current_user
         if message.save
-            ActionCable.server.broadcast 'messages_channel', message
-            
-            render json: message
+            serialized_data = ActiveModelSerializers::Adapter::Json.new(
+                MessageSerializer.new(message)
+              ).serializable_hash
+              MessagesChannel.broadcast_to conversation, serialized_data
+              head :ok
         else 
             render json: {error: message.errors.full_messages}
         end
