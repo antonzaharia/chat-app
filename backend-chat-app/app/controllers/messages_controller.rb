@@ -10,11 +10,11 @@ class MessagesController < ApplicationController
         message.user = @current_user
         if message.save
             ActionCable.server.broadcast 'messages_channel', message
+            
             render json: message
         else 
             render json: {error: message.errors.full_messages}
         end
-        
     end
 
     private
