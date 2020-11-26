@@ -20,6 +20,8 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
+this.App = {};
+App.cable = ActionCable.createConsumer();
 
 ReactDOM.render(
   <Provider store={store}>

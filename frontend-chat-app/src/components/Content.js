@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { create } from '../actions/MessagesActions'
+import { connect } from 'react-redux'
 
-export default class Content extends Component {
+class Content extends Component {
     constructor(props) {
         super(props);
         this.state = { input: "" }
@@ -12,7 +14,10 @@ export default class Content extends Component {
         this.setState({input: event.target.value})
     }
     handleSubmit = event => {
-        
+        event.preventDefault()
+        const message = { content: this.state.input, conversation_id: 1}
+        this.props.create(message)
+        this.setState({ input: ""})
     }
     
     render() {
@@ -24,3 +29,7 @@ export default class Content extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => ({
+    create: message => dispatch(create(message))
+})
+export default connect(null, mapDispatchToProps)(Content)
