@@ -20,7 +20,7 @@ class Content extends Component {
     }
     handleSubmit = event => {
         event.preventDefault()
-        const message = { content: this.state.input, conversation_id: 1}
+        const message = { "content": this.state.input, "conversation_id": 1 }
         this.props.create(message)
         this.setState({ input: ""})
     }
@@ -36,7 +36,7 @@ class Content extends Component {
                 <button type="submit">Send</button>
             </form>
             <ActionCableConsumer
-              channel=""
+              channel="ConversationsChannel"
               onReceived={this.handleReceived}
             >
                 {this.state.messages.map( msg => <p>{ msg.content }</p>)}

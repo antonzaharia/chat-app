@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "action-cable-react": "^0.1.1",
     "actioncable": "^5.2.4-4",
     "atomize": "^1.0.26",
     "react": "^17.0.1",

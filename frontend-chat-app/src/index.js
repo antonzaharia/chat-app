@@ -28,7 +28,7 @@ ReactDOM.render(
     <Provider store={store}>
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <BrowserRouter>
-          <Main />
+          <Main/>
         </BrowserRouter>
       </StyletronProvider>
     </Provider>
