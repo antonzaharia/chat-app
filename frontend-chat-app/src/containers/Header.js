@@ -5,6 +5,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Content from "../components/Content";
 import { logout } from "../actions/UserActions";
+import Conversations from "../components/Conversations"
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
 
@@ -66,7 +67,8 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
-        <Content />
+        <Conversations />
+        {/* <Content /> */}
         <Footer />
       </Div>
     );
@@ -74,11 +76,11 @@ class Header extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
-  removeErrors: () => dispatch({ type: "REMOVE_ERRORS" }),
+  removeErrors: () => dispatch({ type: "REMOVE_ERRORS" })
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
   loggedIn: state.user.loggedIn,
-  errors: state.user.errors,
+  errors: state.user.errors
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,13 +1,13 @@
 export function load(user) {
     return(dispatch) => {
-        fetch(`http://localhost:3000/users/${user.id}/conversations`, {
+        console.log(user)
+        fetch(`http://localhost:3000/users/${user.id}/user-conversations`, {
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({user_id: user.id})
+            body: JSON.stringify(user)
         })
-        .then(resp > resp.json())
-        .then( data => console.log(data))
-        // .then( data => dispatch({type: "LOAD", payload: data}))
+        .then(resp => resp.json())
+        .then( data => dispatch({type: "LOAD", payload: data}))
     }
 }

@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
-    def index
-        conversations = Conversation.all
+    def user
+      user = User.find(params[:id])
+        conversations = user.conversations
         render json: conversations
     end
     def create
