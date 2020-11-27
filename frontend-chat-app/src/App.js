@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
   errors: state.user.errors
 });
 const mapDispatchToProps = (dispatch) => ({
-  checkLoggedInStatus: () => dispatch(checkLoggedInStatus()),
+  checkLoggedInStatus: () => dispatch(checkLoggedInStatus())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

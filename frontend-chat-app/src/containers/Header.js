@@ -67,7 +67,7 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
-        <Conversations />
+        <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/>
         {/* <Content /> */}
         <Footer />
       </Div>

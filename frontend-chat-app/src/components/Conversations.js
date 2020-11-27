@@ -1,25 +1,18 @@
+import { Div } from 'atomize'
 import React, { Component } from 'react'
-import { connect } from "react-redux"
-import { load } from "../actions/ConversationsActions"
 
 class Conversations extends Component {
-    renderConversations = () => {
-        this.props.conversations.map( c => <p>conversation</p>)
+    conversationName = (conversation) => {
+        let name = ""
+        conversation.users ? conversation.users.map( user => name = name + "| " + user.name + " |") : name = "Nothing Here"
+        return name
     }
     render() {
         return (
-            <div>
-                {/* {this.props.user ? this.props.load(this.props.user) : ""} */}
-                {/* {this.props.conversations ? "" : ""} */}
-            </div>
+            <Div>
+                {this.props.conversations.map( c => <p key={c.id}>{this.conversationName(c)}</p>)}
+            </Div>
         )
     }
 }
-const mapDispatchToProps = dispatch => ({
-    load: user => dispatch(load(user))
-})
-const mapStateToProps = state => ({
-    user: state.user.currentUser,
-    conversations: state.conversations
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Conversations)
+export default Conversations

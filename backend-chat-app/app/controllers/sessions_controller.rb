@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        user: @user
+        user: UserSerializer.new(@user)
       }
     else
       render json: {status: 401}
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        user: @current_user
+        user: UserSerializer.new(@current_user)
       }
     else
       render json: {
