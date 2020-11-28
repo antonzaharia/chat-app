@@ -23,7 +23,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Div d="flex">
+      <Div d="flex" w="100%">
         <Notification
           isOpen={this.props.errors}
           m={{ r: "0.5rem" }}
