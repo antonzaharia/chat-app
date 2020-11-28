@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "atomize";
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
 export default class Conversation extends Component {
   render() {
@@ -12,6 +13,12 @@ export default class Conversation extends Component {
         border="1px solid"
         borderColor="gray400"
       >
+          <ActionCableConsumer
+              channel="ConversationsChannel"
+              onReceived={this.handleReceived}
+            >
+                
+            </ActionCableConsumer>
         {this.props.match.params.id}
       </Div>
     );

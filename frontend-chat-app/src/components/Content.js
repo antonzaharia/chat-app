@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { create } from '../actions/MessagesActions'
 import { connect } from 'react-redux'
 import { ActionCableConsumer } from 'react-actioncable-provider';
-// import Cable from './Cable';   
 
 class Content extends Component {
     constructor(props) {
@@ -12,9 +11,6 @@ class Content extends Component {
             messages: []
         }
     }
-    // openConnection() {
-    //     return new WebSocket("ws://localhost:3000/cable")
-    // }
     handleChange = event => {
         this.setState({input: event.target.value})
     }
@@ -27,7 +23,6 @@ class Content extends Component {
     handleReceived = (message) => {
         this.setState({...this.state, messages: [...this.state.messages, message]})
     }
-    
     render() {
         return (
             <>
