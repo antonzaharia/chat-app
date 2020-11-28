@@ -23,7 +23,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Div d="flex" w="100%">
+      <Div w="100%">
+        <Div d="flex" w="100%" p="10px">
         <Notification
           isOpen={this.props.errors}
           m={{ r: "0.5rem" }}
@@ -35,8 +36,8 @@ class Header extends React.Component {
             ? this.props.errors.map((error) => <p>{error}</p>)
             : ""}
         </Notification>
-        <Text tag="h1" textSize={{ xs: "body", md: "display1" }} w={{xs: "100px", md: "180px"}} pos="fixed" left="10px">
-          Welcome to ChatApp <Icon name="Email" size={{ xs: "15px", md: "30px"}} />
+        <Text tag="h1" w="100%">
+          ChatApp <Icon name="Email" size="20px" />
         </Text>
           {this.props.loggedIn ? (
             ""
@@ -70,10 +71,13 @@ class Header extends React.Component {
           isOpen={this.state.showSignup}
           onClose={() => this.setState({ showSignup: false })}
         />
+        </Div>
+        <Div d="flex">
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
         {/* <Content /> */}
 
         <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
+        </Div>
         <Footer />
       </Div>
     );

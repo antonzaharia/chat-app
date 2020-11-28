@@ -6,7 +6,7 @@ class Conversations extends Component {
 
     render() {
         return (
-            <Div pos="fixed" left="0" top="100px">
+            <Div>
                 {this.props.conversations.map( c => <ConversationLink key={c.id} conversation={c} />)}
             </Div>
         )

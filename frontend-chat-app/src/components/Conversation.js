@@ -6,7 +6,9 @@ export default class Conversation extends Component {
     return (
       <Div
       className="conversation"
-        h="100%"
+        minH={{ xs: 'auto', md: '100vh' }}
+        p={{ x: "1rem", y: "0.75rem" }}
+        w="100%"
         border="1px solid"
         borderColor="gray400"
       >
