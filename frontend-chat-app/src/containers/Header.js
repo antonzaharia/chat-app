@@ -9,6 +9,9 @@ import Conversations from "../components/Conversations"
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
 
+import Conversation from "../components/Conversation";
+import { Route } from 'react-router-dom'
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -69,6 +72,8 @@ class Header extends React.Component {
         />
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
         {/* <Content /> */}
+
+        <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         <Footer />
       </Div>
     );

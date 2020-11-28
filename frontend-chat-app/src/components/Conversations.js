@@ -9,7 +9,7 @@ class Conversations extends Component {
         return name
     }
     makeConversationLink = (conversation) => {
-        return `/conversation/${conversation.id}`
+        return `/conversations/${conversation.id}`
     }
     render() {
         return (
