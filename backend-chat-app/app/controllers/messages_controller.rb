@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
     def create
         conversation = Conversation.find(message_params[:conversation_id])
-        message = Message.new(content: message_params[:content], conversation_id: message_params[:conversation_id], user: @current_user)
+        message = conversation.messages.build(content: message_params[:content], user: @current_user)
         if message.save
             serialized_data = ActiveModelSerializers::Adapter::Json.new(MessageSerializer.new(message)).serializable_hash
               MessagesChannel.broadcast_to conversation, serialized_data
