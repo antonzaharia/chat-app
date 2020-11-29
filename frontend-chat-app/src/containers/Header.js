@@ -72,7 +72,7 @@ class Header extends React.Component {
           onClose={() => this.setState({ showSignup: false })}
         />
         </Div>
-        <Div d="flex">
+        <Div d="flex"  h="100%">
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
         {/* <Content /> */}
 

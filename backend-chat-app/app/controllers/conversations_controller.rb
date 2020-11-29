@@ -9,8 +9,6 @@ class ConversationsController < ApplicationController
     end
     def show
         conversation = Conversation.find_by(id: params[:id])
-        ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash
-        ActionCable.server.broadcast 'conversations_channel', serialized_data
         render json: conversation
     end
       

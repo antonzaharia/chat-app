@@ -1,7 +1,6 @@
 class ConversationsChannel < ApplicationCable::Channel
   def subscribed
-    conversation = Conversation.find(1)
-    stream_for conversation
+    stream_from "conversations_channel"
   end
 
   def unsubscribed
