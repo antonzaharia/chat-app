@@ -22,7 +22,7 @@ class Conversation extends Component {
         this.setState({ input: ""})
     }
     handleReceivedMessages = (message) => {
-        console.log(message)
+        console.log("Mesaj:",message)
     }
   render() {
     return (
@@ -40,11 +40,9 @@ class Conversation extends Component {
         </form>
         {this.props.match.params.id}
         <ActionCableConsumer
-            channel="MessagesChannel"
+            channel={{ channel: 'MessagesChannel', conversation_id: this.props.match.params.id }}
             onReceived={this.handleReceivedMessages}
         />
-        {console.log(this.state.messages)}
-        
       </Div>
     );
   }
