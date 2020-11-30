@@ -7,7 +7,7 @@ export function create(message) {
             body: JSON.stringify(message)
         })
         .then(resp => resp.json())
-        .then( data => console.log(data))
+        .then( data => dispatch({type: "SEND_MESSAGE", payload: data}))
         .catch( error => console.log(error))
     }
 }

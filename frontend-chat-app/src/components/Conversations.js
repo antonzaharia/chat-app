@@ -4,6 +4,9 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
+    handleReceivedConversation = () => {
+        console.log("newConversation")
+    }
   render() {
     return (
       <Div>
