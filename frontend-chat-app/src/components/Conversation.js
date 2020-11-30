@@ -22,7 +22,7 @@ class Conversation extends Component {
         this.setState({ input: ""})
     }
     handleReceivedMessages = (message) => {
-        this.setState({...this.state, messages: [...this.state.messages, message]})
+        console.log(message)
     }
   render() {
     return (
