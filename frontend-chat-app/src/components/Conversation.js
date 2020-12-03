@@ -8,8 +8,7 @@ class Conversation extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            input: "",
-            message: []
+            input: ""
         }
     }
     handleChange = event => {
@@ -22,12 +21,7 @@ class Conversation extends Component {
         this.setState({ input: ""})
     }
     handleReceivedMessages = (message) => {
-        this.setState(state => {
-          return {
-            message
-          };
-        })
-        console.log(message)
+        console.log("Message:", message)
     }
   render() {
     return (

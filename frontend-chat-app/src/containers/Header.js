@@ -74,8 +74,7 @@ class Header extends React.Component {
         </Div>
         <Div d="flex"  h="100%">
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
-        {/* <Content /> */}
-
+        
         <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />
