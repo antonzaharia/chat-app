@@ -3,15 +3,6 @@ export default function UserReducer(
   action
 ) {
   switch (action.type) {
-    case "CREATE_CONVERSATION":
-      console.log(action.payload)
-      return {...state, currentUser: {...state.currentUser, conversations: [...state.currentUser.conversations, action.paylaod]}}
-    case "SEND_MESSAGE":
-      const newConversation = state.currentUser.conversations.find( c => c.id === action.payload.conversation.id)
-      newConversation.messages.push(action.payload)
-      const filteredConvs = state.currentUser.conversations.filter( c => c.id !== action.payload.conversation.id)
-      filteredConvs.push(newConversation)
-      return {...state, currentUser: {...state.currentUser, conversations: [...filteredConvs]}}
     case "LOGIN":
       return { ...state, currentUser: action.payload.user, loggedIn: true };
     case "SIGNUP":

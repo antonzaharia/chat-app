@@ -22,10 +22,6 @@ class Header extends React.Component {
       showSignup: false,
     };
   }
-  componentDidMount() {
-    
-  }
-
   render() {
     return (
       <Div w="100%">
@@ -79,9 +75,9 @@ class Header extends React.Component {
         </Div>
 
         <Div d="flex"  h="100%">
-        {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
-        
-        {this.props.user ? this.props.loadConversations(this.props.user.id) : console.log("nada")}
+        {this.props.user ? this.props.loadConversations(this.props.user.id) : console.log("No User Yet")}
+
+        <ConversationForm />
         <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />

@@ -6,14 +6,16 @@ class ConversationForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailInput: ""
+            emailInput: "",
+            message: ""
         }
     }
-    handleChange = (event) => this.setState({ emailInput: event.target.value })
+    handleChange = (event) => this.setState({ [event.target.name]: event.target.value })
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.createConversation(this.state.emailInput)
-        this.setState({ emailInput: "" })
+        const data = {userId: this.props.user.id, email: this.state.emailInput, message: this.state.message}
+        this.props.createConversation(data)
+        this.setState({ emailInput: "", message: "" })
     }
     render() {
         return (
@@ -21,6 +23,7 @@ class ConversationForm extends Component {
                 <p>Start New Conversation</p>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} value={this.state.emailInput} name="emailInput" placeholder="Enter and email"/>
+                    <input type="text" onChange={this.handleChange} value={this.state.message} name="message" placeholder="Enter a Hello message" />
                     <input type="submit" value="Start New Conversation" />
                 </form>
             </div>
@@ -30,4 +33,7 @@ class ConversationForm extends Component {
 const mapDispatchToProps = dispatch => ({
     createConversation: email => dispatch(createConversation(email))
 })
-export default connect(null, mapDispatchToProps)(ConversationForm)
+const mapSateToProps = state => ({
+    user: state.user.currentUser
+})
+export default connect(mapSateToProps, mapDispatchToProps)(ConversationForm)
