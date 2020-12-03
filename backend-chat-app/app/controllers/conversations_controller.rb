@@ -1,10 +1,16 @@
 class ConversationsController < ApplicationController
+  include CurrentUserConcern
+
     def create
+        newUser = User.find_by(email: params[:email])
         conversation = Conversation.new
-        if conversation.save
+        if newUser && conversation.save
+          conversation.users << @current_user
+          conversation.users << newUser
           serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash
           ActionCable.server.broadcast 'conversations_channel', serialized_data
-          head :ok
+         
+          render json: conversation
         end
     end
     def show

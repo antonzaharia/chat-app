@@ -11,6 +11,7 @@ import RegButons from "../components/RegButons";
 
 import Conversation from "../components/Conversation";
 import { Route } from 'react-router-dom'
+import ConversationForm from "../components/ConversationForm";
 
 class Header extends React.Component {
   constructor(props) {
@@ -72,9 +73,10 @@ class Header extends React.Component {
           onClose={() => this.setState({ showSignup: false })}
         />
         </Div>
+        <ConversationForm />
         <Div d="flex"  h="100%">
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
-        
+
         <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />
