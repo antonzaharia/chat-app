@@ -12,6 +12,7 @@ import RegButons from "../components/RegButons";
 import Conversation from "../components/Conversation";
 import { Route } from 'react-router-dom'
 import ConversationForm from "../components/ConversationForm";
+import { loadConversations } from "../actions/ConversationActions";
 
 class Header extends React.Component {
   constructor(props) {
@@ -20,6 +21,9 @@ class Header extends React.Component {
       showLogin: false,
       showSignup: false,
     };
+  }
+  componentDidMount() {
+    
   }
 
   render() {
@@ -73,10 +77,11 @@ class Header extends React.Component {
           onClose={() => this.setState({ showSignup: false })}
         />
         </Div>
-        <ConversationForm />
+
         <Div d="flex"  h="100%">
         {this.props.user && this.props.user.conversations ? <Conversations conversations={this.props.user ? this.props.user.conversations : ["No Conversations"]}/> : ""}
-
+        
+        {this.props.user ? this.props.loadConversations(this.props.user.id) : console.log("nada")}
         <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />
@@ -86,11 +91,12 @@ class Header extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
-  removeErrors: () => dispatch({ type: "REMOVE_ERRORS" })
+  removeErrors: () => dispatch({ type: "REMOVE_ERRORS" }),
+  loadConversations: (userId) => dispatch(loadConversations(userId))
 });
 const mapStateToProps = (state) => ({
-  user: state.user.currentUser,
   loggedIn: state.user.loggedIn,
-  errors: state.user.errors
+  errors: state.user.errors,
+  user: state.user.currentUser
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

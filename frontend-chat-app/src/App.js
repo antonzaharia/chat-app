@@ -3,7 +3,7 @@ import { Container } from "atomize";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { checkLoggedInStatus } from "./actions/UserActions";
-import Header from "./containers/Header";
+import MainContainer from "./containers/Container";
 
 class App extends Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Container d="flex" justify="center">
         <Switch>
-          <Route path="/" component={Header}></Route>
+          <Route path="/" component={MainContainer}></Route>
         </Switch>
       </Container>
     );
