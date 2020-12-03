@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createConversation } from '../actions/ConversationActions'
+import { Input, Button } from "atomize";
 
 class ConversationForm extends Component {
     constructor(props) {
@@ -22,9 +23,9 @@ class ConversationForm extends Component {
             <div>
                 <p>Start New Conversation</p>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} value={this.state.emailInput} name="emailInput" placeholder="Enter and email"/>
-                    <input type="text" onChange={this.handleChange} value={this.state.message} name="message" placeholder="Enter a Hello message" />
-                    <input type="submit" value="Start New Conversation" />
+                    <Input type="text" onChange={this.handleChange} value={this.state.emailInput} name="emailInput" placeholder="Enter email"/>
+                    <Input type="text" onChange={this.handleChange} value={this.state.message} name="message" placeholder="Enter a Hello message" />
+                    <Button type="submit" bg="info700" hoverBg="info800" hoverShadow="4">Start New Conversation</Button>
                 </form>
             </div>
         )
