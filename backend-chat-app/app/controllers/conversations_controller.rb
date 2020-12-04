@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   include CurrentUserConcern
   def index
     user = User.find(params[:user_id])
-    conversations = user.conversations
+    conversations = user.conversations.uniq{ |c| c.id }
     render json: conversations
   end
 

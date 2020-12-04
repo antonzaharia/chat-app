@@ -3,7 +3,6 @@ export default function UserReducer( state = { userConversations: []}, action) {
         case "LOAD_CONVERSATIONS":
             return { ...state, userConversations: action.payload }
         case "CREATE_CONVERSATION":
-            console.log(action.payload)
             return {...state, userConversations: [...state.userConversations, action.payload]}
         case "SEND_MESSAGE":
             const newConversation = state.userConversations.find( c => c.id === action.payload.conversation.id)

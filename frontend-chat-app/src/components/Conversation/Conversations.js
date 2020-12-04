@@ -1,6 +1,7 @@
 import { Div } from "atomize";
 import React, { Component } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
+import { connect } from "react-redux";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
@@ -15,10 +16,13 @@ class Conversations extends Component {
           onReceived={this.handleReceivedConversation}
         />
         {this.props.conversations.map((c) => (
-          <ConversationLink key={c.id} conversation={c} />
+          <ConversationLink key={c.id} conversation={c} user={this.props.user} />
         ))}
       </Div>
     );
   }
 }
-export default Conversations;
+const mapStateToProps = state => ({
+  user: state.user.currentUser
+})
+export default connect(mapStateToProps)(Conversations);

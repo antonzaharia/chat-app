@@ -5,15 +5,14 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Content from "../components/Content";
 import { logout } from "../actions/UserActions";
-import Conversations from "../components/Conversations"
+import Conversations from "../components/Conversation/Conversations"
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
 
-import Conversation from "../components/Conversation";
+import Conversation from "../components/Conversation/Conversation";
 import { Route } from 'react-router-dom'
-import ConversationForm from "../components/ConversationForm";
+import ConversationForm from "../components/Conversation/ConversationForm";
 import { loadConversations } from "../actions/ConversationActions";
-import { makeConversationLink } from "../helpers"
 
 class Header extends React.Component {
   constructor(props) {
@@ -23,6 +22,7 @@ class Header extends React.Component {
       showSignup: false,
     };
   }
+
   render() {
     return (
       <Div w="100%">
@@ -76,9 +76,9 @@ class Header extends React.Component {
         </Div>
 
         <Div d="flex"  h="100%">
-        {this.props.user ? this.props.loadConversations(this.props.user.id) : console.log("No User Yet")}
 
         <ConversationForm />
+        <Conversations conversations={this.props.conversations}/>
         <Route path="/users/:userId/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />
@@ -94,6 +94,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
   errors: state.user.errors,
-  user: state.user.currentUser
+  user: state.user.currentUser,
+  conversations: state.conversations.userConversations
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

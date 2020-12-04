@@ -1,9 +1,9 @@
 class MessagesController < ApplicationController
-    include CurrentUserConcern
 
     def create
         conversation = Conversation.find_by(id: message_params[:conversation_id])
-        message = Message.new(content: message_params[:content], user: @current_user, conversation: conversation)
+        user = User.find(message_params[:user_id])
+        message = conversation.messages.build(content: message_params[:content], user: user)
         
         if message.save
             serialized_data = ActiveModelSerializers::Adapter::Json.new(MessageSerializer.new(message)).serializable_hash
@@ -16,6 +16,6 @@ class MessagesController < ApplicationController
 
     private
     def message_params
-        params.require(:message).permit(:content, :conversation_id)
+        params.require(:message).permit(:content, :conversation_id, :user_id)
     end
 end

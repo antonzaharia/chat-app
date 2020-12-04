@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createConversation } from '../actions/ConversationActions'
+import { createConversation } from '../../actions/ConversationActions'
 import { Input, Button } from "atomize";
 
 class ConversationForm extends Component {

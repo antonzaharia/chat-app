@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "atomize";
-import { create } from '../actions/MessagesActions'
+import { create } from '../../actions/MessagesActions'
 import { connect } from 'react-redux'
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
@@ -16,7 +16,7 @@ class Conversation extends Component {
     }
     handleSubmit = event => {
         event.preventDefault()
-        const message = { "content": this.state.input, "conversation_id": this.props.match.params.id }
+        const message = { content: this.state.input, conversation_id: this.props.match.params.id, user_id: this.props.user.id}
         this.props.create(message)
         this.setState({ input: ""})
     }
@@ -50,4 +50,7 @@ class Conversation extends Component {
 const mapDispatchToProps = dispatch => ({
     create: message => dispatch(create(message))
 })
-export default connect(null, mapDispatchToProps)(Conversation)
+const mapStateToProps = state => ({
+  user: state.user.currentUser
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Conversation)

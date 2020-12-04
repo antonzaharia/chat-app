@@ -11,7 +11,7 @@ export function loadConversations (userId){
 }
 export function createConversation (data) {
     return(dispatch) => {
-        fetch(`http://localhost:3000/users/${data.userId}/conversations`, {
+        fetch(`http://localhost:3000/users/${data.userId}/conversations/`, {
             method: "POST",
             credentials: "include",
             headers: {"Content-Type": "application/json"},
