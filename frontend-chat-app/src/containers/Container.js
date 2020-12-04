@@ -13,6 +13,7 @@ import Conversation from "../components/Conversation";
 import { Route } from 'react-router-dom'
 import ConversationForm from "../components/ConversationForm";
 import { loadConversations } from "../actions/ConversationActions";
+import { makeConversationLink } from "../helpers"
 
 class Header extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class Header extends React.Component {
         {this.props.user ? this.props.loadConversations(this.props.user.id) : console.log("No User Yet")}
 
         <ConversationForm />
-        <Route path="/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
+        <Route path="/users/:userId/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>
         <Footer />
       </Div>
