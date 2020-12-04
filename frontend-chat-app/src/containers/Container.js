@@ -74,10 +74,9 @@ class Header extends React.Component {
           onClose={() => this.setState({ showSignup: false })}
         />
         </Div>
-
-        <Div d="flex"  h="100%">
-
         <ConversationForm />
+        <Div d="flex">
+        
         <Conversations conversations={this.props.conversations}/>
         <Route path="/users/:userId/conversations/:id" render={routerProps => <Conversation {...routerProps}/>} />
         </Div>

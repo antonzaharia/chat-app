@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createConversation } from '../../actions/ConversationActions'
-import { Input, Button } from "atomize";
+import { Input, Button, Div } from "atomize";
 
 class ConversationForm extends Component {
     constructor(props) {
@@ -20,14 +20,14 @@ class ConversationForm extends Component {
     }
     render() {
         return (
-            <div>
+            <Div w="100%" d="block">
                 <p>Start New Conversation</p>
                 <form onSubmit={this.handleSubmit}>
                     <Input type="text" onChange={this.handleChange} value={this.state.emailInput} name="emailInput" placeholder="Enter email"/>
                     <Input type="text" onChange={this.handleChange} value={this.state.message} name="message" placeholder="Enter a Hello message" />
                     <Button type="submit" bg="info700" hoverBg="info800" hoverShadow="4">Start New Conversation</Button>
                 </form>
-            </div>
+            </Div>
         )
     }
 }
