@@ -18,7 +18,7 @@ export function createConversation (data) {
             body: JSON.stringify(data)
         })
         .then(resp => resp.json())
-        .then( data => console.log(data))
+        .then( data => dispatch({type:"CREATE_CONVERSATION", payload: data}))
         .catch( error => console.log(error))
     }
 }

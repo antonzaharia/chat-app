@@ -33,13 +33,13 @@ class Conversation extends Component {
         border="1px solid"
         borderColor="gray400"
       >
+        
         <form onSubmit={this.handleSubmit}>
             <input type="text" value={this.state.input} onChange={this.handleChange}/>
             <button type="submit">Send</button>
         </form>
         {this.props.match.params.id}
         <ActionCableConsumer
-            ref='Conversation'
             channel={{ channel: 'MessagesChannel', conversation_id: this.props.match.params.id }}
             onReceived={this.handleReceivedMessages}
         />

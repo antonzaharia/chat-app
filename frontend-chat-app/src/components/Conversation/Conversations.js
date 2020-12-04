@@ -6,7 +6,7 @@ import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
     handleReceivedConversation = () => {
-        console.log("newConversation")
+        console.log("New Conversation!")
     }
   render() {
     return (
