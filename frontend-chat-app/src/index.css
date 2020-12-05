@@ -17,8 +17,19 @@ code {
   bottom: 0;
 }
 .own-message {
-  color: red;
+  color: white;
+  background-color: #2F4DFA ;
+  border-radius: 5px;
+  align-self: flex-end;
 }
 .other-message {
-  color: blue;
+  color: white;
+  background-color: #787878;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+.message {
+  color: black;
+  border-radius: 5px;
+  align-self: flex-start;
 }

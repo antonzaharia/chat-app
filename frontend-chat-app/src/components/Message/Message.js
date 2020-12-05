@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Text } from "atomize";
 
 class Message extends Component {
     checkUser = () => {
@@ -11,9 +12,14 @@ class Message extends Component {
     render() {
         const message = this.props.message
         return (
-            <div className={this.props.user ? this.checkUser() : "message"}>
+            <Text className={this.props.user ? this.checkUser() : "message"}
+            maxW="70%"
+            w="auto"
+            m="2px"
+            p="5px"
+            >
                 {message.content}
-            </div>
+            </Text>
         )
     }
 }

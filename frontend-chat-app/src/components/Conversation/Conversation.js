@@ -43,6 +43,8 @@ class Conversation extends Component {
           h="100%"
           border="1px solid"
           borderColor="gray400"
+          d="flex"
+          flexDir="column"
         >
           <Messages messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}/>
           <ActionCableConsumer
