@@ -36,15 +36,14 @@ class Conversation extends Component {
     return (
       <Div w="100%">
         <Div
-          className="conversation"
-          h="100%"
           p={{ x: "1rem", y: "0.75rem" }}
           w="100%"
-          h="100%"
+          h="400px"
           border="1px solid"
           borderColor="gray400"
           d="flex"
-          flexDir="column"
+          flexDir="column-reverse"
+          overflow="auto"
         >
           <Messages messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}/>
           <ActionCableConsumer

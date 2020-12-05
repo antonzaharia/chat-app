@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Text } from "atomize";
 
 class Message extends Component {
+
     checkUser = () => {
         const { message, user } = this.props
         if (message.user_id === user.id) {
