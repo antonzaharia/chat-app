@@ -20,12 +20,12 @@ class ConversationForm extends Component {
     }
     render() {
         return (
-            <Div w="100%" d="block">
+            <Div w="100%">
                 <p>Start New Conversation</p>
                 <form onSubmit={this.handleSubmit}>
                     <Input type="text" onChange={this.handleChange} value={this.state.emailInput} name="emailInput" placeholder="Enter email"/>
                     <Input type="text" onChange={this.handleChange} value={this.state.message} name="message" placeholder="Enter a Hello message" />
-                    <Button type="submit" bg="info700" hoverBg="info800" hoverShadow="4">Start New Conversation</Button>
+                    <Button m="0 auto" type="submit" bg="info700" hoverBg="info800" hoverShadow="4">Start New Conversation</Button>
                 </form>
             </Div>
         )
