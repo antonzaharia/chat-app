@@ -16,3 +16,9 @@ code {
   left: 0;
   bottom: 0;
 }
+.own-message {
+  color: red;
+}
+.other-message {
+  color: blue;
+}

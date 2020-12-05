@@ -1,9 +1,10 @@
 import React from 'react'
+import Message from './Message'
 
 export default function Messages({messages}) {
     return (
         <>
-            {messages.map( message => <p key={message.id}>{message.content}</p>)}
+            {messages.map( message => <Message key={message.id} message={message}/>)}
         </>
     )
 }
