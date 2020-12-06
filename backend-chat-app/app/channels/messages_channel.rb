@@ -1,7 +1,7 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
     @conversation = Conversation.find_by(id: params[:conversation_id])
-    stream_from @conversation
+    stream_for @conversation
   end
 
   def received(data)
