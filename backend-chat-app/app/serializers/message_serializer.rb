@@ -1,5 +1,5 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :content, :user, :conversation
+  attributes :id, :content, :created_at, :user, :conversation, :conversation_id, :user_id
   def user
     user = object.user
   end
