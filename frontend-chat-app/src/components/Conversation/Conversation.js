@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Div } from "atomize";
 import { create } from "../../actions/MessagesActions";
 import { connect } from "react-redux";
-import { ActionCableConsumer } from "react-actioncable-provider";
 import { Input, Button } from "atomize";
 import Messages from "../Message/Messages";
 
@@ -29,9 +28,7 @@ class Conversation extends Component {
     this.props.create(message);
     this.setState({ input: "" });
   };
-  handleReceivedMessages = (message) => {
-    console.log("Message:", message);
-  };
+  
   render() {
     return (
       <Div w="100%">
@@ -46,13 +43,7 @@ class Conversation extends Component {
           overflow="auto"
         >
           <Messages messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}/>
-          <ActionCableConsumer
-            channel={{
-              channel: "MessagesChannel",
-              conversation_id: this.props.match.params.id,
-            }}
-            onReceived={this.handleReceivedMessages}
-          />
+          
         </Div>
         <Div>
           <form onSubmit={this.handleSubmit} className="message-form">

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
-    handleReceivedConversation = () => {
+    handleReceivedConversation = (conv) => {
         console.log("New Conversation!")
     }
   render() {

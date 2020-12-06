@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   include CurrentUserConcern
   def index
     user = User.find(params[:user_id])
-    conversations = user.conversations.uniq{ |c| c.id }
+    conversations = user.conversations.uniq{ |c| c.id }.reverse
     render json: conversations
   end
 
@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
       serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash
       ActionCable.server.broadcast 'conversations_channel', serialized_data
      
-      render json: conversation
+      render json: conversation, status: :created
     end
   end
     def show

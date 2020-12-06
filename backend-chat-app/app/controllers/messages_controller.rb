@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
         if message.save
             serialized_data = ActiveModelSerializers::Adapter::Json.new(MessageSerializer.new(message)).serializable_hash
             MessagesChannel.broadcast_to conversation, serialized_data
-            render json: message
+            render json: message, status: :created
         else 
             render json: {error: message.errors.full_messages}
         end
