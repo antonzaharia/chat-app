@@ -4,6 +4,7 @@ import { create } from "../../actions/MessagesActions";
 import { connect } from "react-redux";
 import { Input, Button } from "atomize";
 import Messages from "../Message/Messages";
+import { ActionCableConsumer } from "react-actioncable-provider";
 
 class Conversation extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class Conversation extends Component {
     this.props.create(message);
     this.setState({ input: "" });
   };
+  handleReceivedMessages = (data) => {
+    this.props.receiveMessage(data)
+  };
   
   render() {
     return (
@@ -42,7 +46,10 @@ class Conversation extends Component {
           flexDir="column-reverse"
           overflow="auto"
         >
-          <Messages messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}/>
+          <Messages 
+          receiveMessage={this.props.receiveMessage}
+          messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}
+          />
           
         </Div>
         <Div>
@@ -74,6 +81,7 @@ class Conversation extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   create: (message) => dispatch(create(message)),
+  receiveMessage: (message) => dispatch({type: "RECEIVE_MESSAGE", payload: message})
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
