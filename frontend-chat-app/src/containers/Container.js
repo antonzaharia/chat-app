@@ -3,7 +3,6 @@ import { Icon, Div, Text, Button, Notification } from "atomize";
 import { connect } from "react-redux";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
-import Content from "../components/Content";
 import { logout } from "../actions/UserActions";
 import Conversations from "../components/Conversation/Conversations"
 import Footer from "./Footer";
@@ -20,7 +19,16 @@ class Header extends React.Component {
     this.state = {
       showLogin: false,
       showSignup: false,
+      showConversationForm: false,
+      error: false
     };
+  }
+  handleShowConversationForm = () => {
+    if(this.props.user){
+      this.setState({ showConversationForm: !this.state.showConversationForm})
+    } else {
+      this.setState({ error: true})
+    }
   }
 
   render() {
@@ -34,9 +42,7 @@ class Header extends React.Component {
           bg="danger700"
           onClose={this.props.removeErrors}
         >
-          {this.props.errors
-            ? this.props.errors.map((error) => <p>{error}</p>)
-            : ""}
+          {this.props.errors ? this.props.errors.map((error) => <p>{error}</p>) : ""}
         </Notification>
         <Text tag="h1" w="100%">
           ChatApp <Icon name="Email" size="20px" />
@@ -74,7 +80,9 @@ class Header extends React.Component {
           onClose={() => this.setState({ showSignup: false })}
         />
         </Div>
-        <ConversationForm />
+        <Button m="0 auto" onClick={this.handleShowConversationForm}>New Conversation</Button>
+        {this.state.showConversationForm ? <ConversationForm /> : ""}<br/>
+        {this.state.error && !this.props.user ? <Div textAlign="center" textColor="warning700"><p>You must be logged in!</p></Div> : ""}
         <Div d="flex">
         
         <Conversations conversations={this.props.conversations}/>
