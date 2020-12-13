@@ -1,7 +1,7 @@
 import React from "react";
 import { Div } from "atomize";
 import { Link } from "react-router-dom";
-import { makeConversationLink } from '../../helpers'
+import { makeConversationLink } from "../../helpers";
 
 export default function ConversationLink({ user, conversation }) {
   const conversationName = (conversation) => {
@@ -15,7 +15,7 @@ export default function ConversationLink({ user, conversation }) {
   };
 
   return (
-    <Link to={makeConversationLink(user, conversation)}>
+    <Link key={conversation.id} to={makeConversationLink(user, conversation)}>
       <Div
         className="conversation"
         p={{ x: "1rem", y: "0.75rem" }}
