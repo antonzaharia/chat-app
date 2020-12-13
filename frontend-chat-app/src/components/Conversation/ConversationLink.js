@@ -17,7 +17,7 @@ export default function ConversationLink({ user, conversation }) {
   return (
     <Link key={conversation.id} to={makeConversationLink(user, conversation)}>
       <Div
-        className="conversation"
+        className={conversation.seen ? "" : "conversation-not-seen"}
         p={{ x: "1rem", y: "0.75rem" }}
         border="1px solid"
         w="250px"

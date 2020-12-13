@@ -1,5 +1,5 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :messages, :users
+  attributes :id, :messages, :users, :seen
   
   def messages
     messages = object.messages.uniq{ |c| c.id }
