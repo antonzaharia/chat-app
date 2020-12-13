@@ -2,7 +2,10 @@ import { Div, Notification } from "atomize";
 import React, { Component } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { connect } from "react-redux";
-import { loadConversations } from "../../actions/ConversationActions";
+import {
+  loadConversations,
+  markAsSeen,
+} from "../../actions/ConversationActions";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
@@ -17,6 +20,7 @@ class Conversations extends Component {
     this.setState({ showNotification: true });
     this.props.loadConversations(this.props.user.id);
   };
+
   render() {
     const { showNotification } = this.state;
 
@@ -27,11 +31,13 @@ class Conversations extends Component {
           onReceived={this.handleReceivedConversation}
         />
         {this.props.conversations.map((c) => (
-          <ConversationLink
-            key={c.id}
-            conversation={c}
-            user={this.props.user}
-          />
+          <div key={c.id}>
+            <ConversationLink
+              conversation={c}
+              user={this.props.user}
+              markAsSeen={this.props.markAsSeen}
+            />
+          </div>
         ))}
         <Notification
           bg="success700"
@@ -46,6 +52,7 @@ class Conversations extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   loadConversations: (userId) => dispatch(loadConversations(userId)),
+  markAsSeen: (user, conversation) => dispatch(markAsSeen(user, conversation)),
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,

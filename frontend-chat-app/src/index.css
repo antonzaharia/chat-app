@@ -11,7 +11,10 @@ code {
     monospace;
 }
 .conversation-not-seen {
-  color: red;
+  font-weight: bold;
+}
+.conversation-seen {
+  color: black;
 }
 .message-form {
   position: relative;

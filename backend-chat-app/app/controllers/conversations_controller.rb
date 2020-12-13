@@ -23,6 +23,11 @@ class ConversationsController < ApplicationController
         conversation = Conversation.find_by(id: params[:id])
         render json: conversation
     end
+    def update
+      conversation = Conversation.find(params[:id])
+      conversation.update(seen: true)
+      render json: conversation
+    end
       
       private
       
