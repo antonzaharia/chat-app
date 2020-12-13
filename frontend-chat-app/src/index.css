@@ -10,6 +10,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.conversation {
+  color: red;
+}
 .message-form {
   position: relative;
   left: 0;

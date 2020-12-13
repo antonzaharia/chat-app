@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import Message from "./Message";
 import { ActionCableConsumer } from "react-actioncable-provider";
-import { Notification } from "atomize";
 
 export default function Messages({ messages, receiveMessage }) {
-  const [notification, setNotification] = useState(false);
-
   const sortedMessages = messages.sort(
     (a, b) => new Date(b.created_at) - new Date(a.created_at)
   );
   const handleReceivedMessages = (data) => {
-    setNotification(data);
     receiveMessage(data);
   };
   const id = messages.length > 0 ? messages[0].conversation_id : 0;

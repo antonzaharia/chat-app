@@ -2,6 +2,7 @@ import { Div, Notification } from "atomize";
 import React, { Component } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { connect } from "react-redux";
+import { loadConversations } from "../../actions/ConversationActions";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
@@ -14,6 +15,7 @@ class Conversations extends Component {
   handleReceivedConversation = (conversation) => {
     console.log("New Conversation!", conversation);
     this.setState({ showNotification: true });
+    this.props.loadConversations(this.props.user.id);
   };
   render() {
     const { showNotification } = this.state;
@@ -36,13 +38,16 @@ class Conversations extends Component {
           isOpen={showNotification}
           onClose={() => this.setState({ showNotification: false })}
         >
-          This notification is self closable
+          You have a New Conversation!
         </Notification>
       </Div>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  loadConversations: (userId) => dispatch(loadConversations(userId)),
+});
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
 });
-export default connect(mapStateToProps)(Conversations);
+export default connect(mapStateToProps, mapDispatchToProps)(Conversations);
