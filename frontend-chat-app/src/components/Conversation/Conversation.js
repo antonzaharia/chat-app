@@ -4,7 +4,6 @@ import { create } from "../../actions/MessagesActions";
 import { connect } from "react-redux";
 import { Input, Button } from "atomize";
 import Messages from "../Message/Messages";
-import { ActionCableConsumer } from "react-actioncable-provider";
 
 class Conversation extends Component {
   constructor(props) {
@@ -17,8 +16,10 @@ class Conversation extends Component {
     this.setState({ input: event.target.value });
   };
   findConversation = () => {
-    return this.props.conversations.find( c => c.id == this.props.match.params.id)
-  }
+    return this.props.conversations.find(
+      (c) => c.id === parseInt(this.props.match.params.id)
+    );
+  };
   handleSubmit = (event) => {
     event.preventDefault();
     const message = {
@@ -30,9 +31,9 @@ class Conversation extends Component {
     this.setState({ input: "" });
   };
   handleReceivedMessages = (data) => {
-    this.props.receiveMessage(data)
+    this.props.receiveMessage(data);
   };
-  
+
   render() {
     return (
       <Div w="100%">
@@ -46,11 +47,14 @@ class Conversation extends Component {
           flexDir="column-reverse"
           overflow="auto"
         >
-          <Messages 
-          receiveMessage={this.props.receiveMessage}
-          messages={this.findConversation() ? this.findConversation().messages : [{id: 0, content:"No Messages"}]}
+          <Messages
+            receiveMessage={this.props.receiveMessage}
+            messages={
+              this.findConversation()
+                ? this.findConversation().messages
+                : [{ id: 0, content: "No Messages" }]
+            }
           />
-          
         </Div>
         <Div>
           <form onSubmit={this.handleSubmit} className="message-form">
@@ -81,10 +85,11 @@ class Conversation extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   create: (message) => dispatch(create(message)),
-  receiveMessage: (message) => dispatch({type: "RECEIVE_MESSAGE", payload: message})
+  receiveMessage: (message) =>
+    dispatch({ type: "RECEIVE_MESSAGE", payload: message }),
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
-  conversations: state.conversations.userConversations
+  conversations: state.conversations.userConversations,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Conversation);
