@@ -22,7 +22,11 @@ export default function ConversationLink({ user, conversation, markAsSeen }) {
       <Div
         onClick={() => handleMarkAsSeen(conversation)}
         className={
-          conversation.seen ? "conversation-seen" : "conversation-not-seen"
+          conversation.seen ||
+          conversation.messages[conversation.messages.length - 1].user_id ===
+            user.id
+            ? "conversation-seen"
+            : "conversation-not-seen"
         }
         p={{ x: "1rem", y: "0.75rem" }}
         border="1px solid"
