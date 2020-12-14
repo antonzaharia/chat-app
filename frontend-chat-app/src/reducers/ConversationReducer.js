@@ -5,21 +5,21 @@ export default function UserReducer(state = { userConversations: [] }, action) {
     case "CREATE_CONVERSATION":
       return {
         ...state,
-        userConversations: [...state.userConversations, action.payload],
+        userConversations: [action.payload, ...state.userConversations],
       };
     case "RECEIVE_MESSAGE":
       const findConversation = state.userConversations.find(
         (c) => c.id === action.payload.message.conversation.id
       );
-      const messageCheck = findConversation.messages.find(
+      const duplicateCheck = findConversation.messages.find(
         (m) => m.id === action.payload.message.id
       );
-      if (messageCheck === undefined) {
+      if (duplicateCheck === undefined) {
         findConversation.messages.push(action.payload.message);
         const filteredConversation = state.userConversations.filter(
           (c) => c.id !== action.payload.message.conversation.id
         );
-        filteredConversation.push(findConversation);
+        filteredConversation.unshift(findConversation);
         return { ...state, userConversations: [...filteredConversation] };
       } else {
         return state;
@@ -35,7 +35,7 @@ export default function UserReducer(state = { userConversations: [] }, action) {
       // const filteredConvs = state.userConversations.filter( c => c.id !== action.payload.conversation.id)
       // filteredConvs.push(newConversation)
       // return {...state, userConversations: [...filteredConvs]}
-      console.log(action.payload);
+      //   console.log(action.payload);
       return state;
     default:
       return state;

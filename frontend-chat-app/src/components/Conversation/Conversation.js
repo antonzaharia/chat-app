@@ -4,6 +4,7 @@ import { create } from "../../actions/MessagesActions";
 import { connect } from "react-redux";
 import { Input, Button } from "atomize";
 import Messages from "../Message/Messages";
+import { loadConversations } from "../../actions/ConversationActions";
 
 class Conversation extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class Conversation extends Component {
     this.setState({ input: "" });
   };
   handleReceivedMessages = (data) => {
+    this.props.loadConversations(this.props.user.id);
     this.props.receiveMessage(data);
   };
 
@@ -85,6 +87,7 @@ class Conversation extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   create: (message) => dispatch(create(message)),
+  loadConversations: (userId) => dispatch(loadConversations(userId)),
   receiveMessage: (message) =>
     dispatch({ type: "RECEIVE_MESSAGE", payload: message }),
 });

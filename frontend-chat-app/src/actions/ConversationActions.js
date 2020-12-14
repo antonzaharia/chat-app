@@ -3,7 +3,6 @@ export function loadConversations(userId) {
     fetch(`http://localhost:3000/users/${userId}/conversations`)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("Action", data);
         dispatch({ type: "LOAD_CONVERSATIONS", payload: data });
       });
   };
