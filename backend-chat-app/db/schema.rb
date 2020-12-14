@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_150016) do
+ActiveRecord::Schema.define(version: 2020_12_14_194106) do
 
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_12_13_150016) do
     t.integer "user_id"
     t.integer "conversation_id"
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "type"
+    t.boolean "seen"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

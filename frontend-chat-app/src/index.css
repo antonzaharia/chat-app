@@ -12,9 +12,13 @@ code {
 }
 .conversation-not-seen {
   font-weight: bold;
+  color: red;
 }
 .conversation-seen {
   color: black;
+}
+.conversation-seen:hover {
+  color: blue;
 }
 .message-form {
   position: relative;
