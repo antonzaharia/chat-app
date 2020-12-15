@@ -60,12 +60,30 @@ class Header extends React.Component {
             ""
           ) : (
             <Div d="flex" pos="fixed" right="0px" p="10px">
-              <Text m="8px">{this.props.user.name}</Text>
+              <Button
+                prefix={
+                  <Icon
+                    name="UserSolid"
+                    size="16px"
+                    color="white"
+                    m={{ r: "0.5rem" }}
+                  />
+                }
+                bg="warning700"
+                hoverBg="warning800"
+                rounded="circle"
+                p={{ r: "1.5rem", l: "1rem" }}
+                shadow="3"
+                hoverShadow="4"
+              >
+                Notifications
+              </Button>
               <Button
                 bg="brand900"
                 hoverBg="brand700"
                 m={"0 auto"}
                 hoverShadow="4"
+                rounded="circle"
                 onClick={() => this.props.logout()}
               >
                 Logout
