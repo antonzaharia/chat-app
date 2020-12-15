@@ -7,6 +7,7 @@ import { logout } from "../actions/UserActions";
 import Conversations from "../components/Conversation/Conversations";
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
+import BasicSideDrawer from "../components/Notifications/BasicSideDrawer";
 
 import Conversation from "../components/Conversation/Conversation";
 import { Route } from "react-router-dom";
@@ -20,6 +21,7 @@ class Header extends React.Component {
       showLogin: false,
       showSignup: false,
       showConversationForm: false,
+      showSideDrawer: false,
       error: false,
     };
   }
@@ -76,8 +78,9 @@ class Header extends React.Component {
                 p={{ r: "1.5rem", l: "1rem" }}
                 shadow="3"
                 hoverShadow="4"
+                onClick={() => this.setState({ showSideDrawer: true })}
               >
-                {makeNotificationNumber(this.props.user)} Notification
+                {makeNotificationNumber(this.props.user)} | Notification
                 {makeNotificationNumber(this.props.user) === 1 ? "" : "s"}
               </Button>
               <Button
@@ -120,6 +123,11 @@ class Header extends React.Component {
             render={(routerProps) => <Conversation {...routerProps} />}
           />
         </Div>
+        <BasicSideDrawer
+          isOpen={this.state.showSideDrawer}
+          onClose={() => this.setState({ showSideDrawer: false })}
+          notifications={this.props.user.notifications}
+        />
         <Footer />
       </Div>
     );
