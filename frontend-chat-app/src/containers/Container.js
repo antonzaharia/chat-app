@@ -11,6 +11,7 @@ import RegButons from "../components/RegButons";
 import Conversation from "../components/Conversation/Conversation";
 import { Route } from "react-router-dom";
 import ConversationForm from "../components/Conversation/ConversationForm";
+import { makeNotificationNumber } from "../helpers";
 
 class Header extends React.Component {
   constructor(props) {
@@ -76,7 +77,8 @@ class Header extends React.Component {
                 shadow="3"
                 hoverShadow="4"
               >
-                Notifications
+                {makeNotificationNumber(this.props.user)} Notification
+                {makeNotificationNumber(this.props.user) === 1 ? "" : "s"}
               </Button>
               <Button
                 bg="brand900"
