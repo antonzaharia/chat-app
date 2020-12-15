@@ -126,7 +126,11 @@ class Header extends React.Component {
         <BasicSideDrawer
           isOpen={this.state.showSideDrawer}
           onClose={() => this.setState({ showSideDrawer: false })}
-          notifications={this.props.user.notifications}
+          notifications={
+            this.props.user
+              ? this.props.user.notifications
+              : [{ content: "No Notifications" }]
+          }
         />
         <Footer />
       </Div>
