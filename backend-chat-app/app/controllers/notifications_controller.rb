@@ -1,8 +1,8 @@
 class NotificationsController < ApplicationController
-    def index
-        user = User.find(params[:user_id])
-        notifications = user.notifications
+    def update
+        notification = Notification.find(params[:id])
+        notification.update(seen: true)
 
-        render json: notifications
+        render json: notification
     end
 end
