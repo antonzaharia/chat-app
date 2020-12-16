@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
     conversation = user.conversations.build
     if conversation.save
       conversation.users << reciever
-      notification = reciever.notifications.build(seen: false, content: "You have a new message from #{user.name}")
+      notification = reciever.notifications.build(conversation: conversation, content: "You have a new message from #{user.name}")
       notification.save
       message = conversation.messages.create(content: params[:message], user: user)
       serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash

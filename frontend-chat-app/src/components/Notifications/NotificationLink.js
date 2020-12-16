@@ -2,10 +2,14 @@ import React from "react";
 
 import { Div } from "atomize";
 import { Link } from "react-router-dom";
+import { makeNotificationLink } from "../../helpers";
 
-export default function NotificationLink({ notification }) {
+export default function NotificationLink({ close, user, notification }) {
   return (
-    <Link to="/">
+    <Link
+      onClick={close}
+      to={makeNotificationLink(user, notification.conversation_id)}
+    >
       <Div
         m="3px 0"
         p="10px"

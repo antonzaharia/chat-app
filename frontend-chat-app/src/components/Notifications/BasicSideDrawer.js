@@ -1,7 +1,12 @@
 import { Div, Button, SideDrawer, Icon, Text } from "atomize";
 import NotificationLink from "./NotificationLink";
 
-export default function BasicSideDrawer({ isOpen, onClose, notifications }) {
+export default function BasicSideDrawer({
+  user,
+  isOpen,
+  onClose,
+  notifications,
+}) {
   return (
     <SideDrawer isOpen={isOpen} onClose={onClose}>
       <Div d="flex" m={{ b: "1rem" }}>
@@ -18,7 +23,12 @@ export default function BasicSideDrawer({ isOpen, onClose, notifications }) {
       </Button>
       <Div d="flex" flexDir="column">
         {notifications.map((n) => (
-          <NotificationLink notification={n} key={n.id} />
+          <NotificationLink
+            close={onClose}
+            user={user}
+            notification={n}
+            key={n.id}
+          />
         ))}
       </Div>
     </SideDrawer>

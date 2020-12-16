@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_194106) do
     t.boolean "seen", default: false
     t.string "content"
     t.integer "user_id"
+    t.integer "conversation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

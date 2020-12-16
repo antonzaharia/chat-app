@@ -124,6 +124,7 @@ class Header extends React.Component {
           />
         </Div>
         <BasicSideDrawer
+          user={this.props.user}
           isOpen={this.state.showSideDrawer}
           onClose={() => this.setState({ showSideDrawer: false })}
           notifications={

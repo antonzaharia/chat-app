@@ -4,6 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.boolean :seen, default: false
       t.string :content
       t.integer :user_id
+      t.integer :conversation_id
 
       t.timestamps
     end
