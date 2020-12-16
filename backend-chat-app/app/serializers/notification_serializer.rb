@@ -1,3 +1,3 @@
 class NotificationSerializer < ActiveModel::Serializer
-  attributes :id, :type
+  attributes :id, :content, :user
 end
