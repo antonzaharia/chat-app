@@ -10,13 +10,18 @@ export default function NotificationLink({ notification }) {
         m="3px 0"
         p="10px"
         border="1px solid"
-        borderColor="info700"
+        borderColor={notification.seen ? "info700" : "gray"}
         hoverBorderColor="info900"
-        hoverBg="info700"
-        hoverTextColor="white"
+        hoverBg={notification.seen ? "info700" : "white"}
+        hoverTextColor={notification.seen ? "white" : "black"}
         w="100%"
-        textColor="info700"
+        textColor={notification.seen ? "info700" : "black"}
       >
+        {notification.seen ? (
+          <span className="new-badge">NEW </span>
+        ) : (
+          <span className="seen-badge">SEEN </span>
+        )}
         {notification.content}
       </Div>
     </Link>

@@ -61,3 +61,13 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: gray;
 }
+.new-badge {
+  color: red;
+  font-size: 10px;
+  float: right;
+}
+.seen-badge {
+  color: gray;
+  font-size: 10px;
+  float: right;
+}
