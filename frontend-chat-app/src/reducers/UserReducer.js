@@ -1,5 +1,5 @@
 export default function UserReducer(
-  state = { currentUser: null, errors: false , loggedIn: false},
+  state = { currentUser: null, errors: false, loggedIn: false },
   action
 ) {
   switch (action.type) {
@@ -9,27 +9,35 @@ export default function UserReducer(
       return {
         ...state,
         currentUser: action.payload.user,
-        loggedIn: true
-      }
+        loggedIn: true,
+      };
     case "SET_CURRENT_USER":
       return {
-        ...state, 
+        ...state,
         currentUser: action.payload.user,
-        loggedIn: action.payload.logged_in
-      }
-    case "LOGOUT": 
+        loggedIn: action.payload.logged_in,
+      };
+    case "LOGOUT":
       return {
-        ...state, 
+        ...state,
         currentUser: null,
-        loggedIn: false
-      }
+        loggedIn: false,
+      };
     case "REG_ERROR":
-        return {
-          ...state,
-          errors: action.payload
-        }
+      return {
+        ...state,
+        errors: action.payload,
+      };
     case "REMOVE_ERRORS":
-      return {...state, errors: false}
+      return { ...state, errors: false };
+    case "UPDATE_NOTIFICATION":
+      const notifications = state.currentUser.notifications.map((n) =>
+        n.id === action.payload.id ? action.payload : n
+      );
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, notifications: notifications },
+      };
     default:
       return state;
   }

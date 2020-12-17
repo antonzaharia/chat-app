@@ -10,7 +10,7 @@ export function updateNotification(data) {
       }
     )
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => dispatch({ type: "UPDATE_NOTIFICATION", payload: data }))
       .catch((error) => console.log(error));
   };
 }
