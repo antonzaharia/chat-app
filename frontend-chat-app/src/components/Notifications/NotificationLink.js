@@ -4,8 +4,16 @@ import { Div } from "atomize";
 import { Link } from "react-router-dom";
 import { makeNotificationLink } from "../../helpers";
 import { connect } from "react-redux";
+import { updateNotification } from "../../actions/NotificationActions";
 
 class NotificationLink extends React.Component {
+  handleClick = () => {
+    const data = {
+      userId: this.props.user.id,
+      notificationId: this.props.notification.id,
+    };
+    this.props.updateNotification(data);
+  };
   render() {
     const notification = this.props.notification;
     return (
@@ -23,6 +31,7 @@ class NotificationLink extends React.Component {
           hoverTextColor={notification.seen ? "black" : "white"}
           w="100%"
           textColor={notification.seen ? "black" : "info700"}
+          onClick={this.handleClick}
         >
           {notification.seen ? (
             <span className="seen-badge">SEEN </span>
@@ -38,4 +47,7 @@ class NotificationLink extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
 });
-export default connect(mapStateToProps)(NotificationLink);
+const mapDispatchToProps = (dispatch) => ({
+  updateNotification: (data) => dispatch(updateNotification(data)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationLink);

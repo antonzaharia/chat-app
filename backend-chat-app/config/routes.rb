@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :conversations 
+    resources :notifications
   end
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 
