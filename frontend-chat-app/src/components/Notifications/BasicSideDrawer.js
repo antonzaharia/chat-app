@@ -23,12 +23,7 @@ export default function BasicSideDrawer({
       </Button>
       <Div d="flex" flexDir="column">
         {notifications.map((n) => (
-          <NotificationLink
-            close={onClose}
-            user={user}
-            notification={n}
-            key={n.id}
-          />
+          <NotificationLink close={onClose} notification={n} key={n.id} />
         ))}
       </Div>
     </SideDrawer>
