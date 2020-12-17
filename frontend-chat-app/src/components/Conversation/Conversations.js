@@ -6,6 +6,7 @@ import {
   loadConversations,
   markAsSeen,
 } from "../../actions/ConversationActions";
+import { loadNotifications } from "../../actions/NotificationActions";
 import ConversationLink from "./ConversationLink";
 
 class Conversations extends Component {
@@ -18,6 +19,7 @@ class Conversations extends Component {
   handleReceivedConversation = (conversation) => {
     console.log("New Conversation!", conversation);
     this.setState({ showNotification: true });
+    this.props.loadNotifications(this.props.user.id);
     this.props.loadConversations(this.props.user.id);
   };
 
@@ -53,6 +55,7 @@ class Conversations extends Component {
 const mapDispatchToProps = (dispatch) => ({
   loadConversations: (userId) => dispatch(loadConversations(userId)),
   markAsSeen: (user, conversation) => dispatch(markAsSeen(user, conversation)),
+  loadNotifications: (userId) => dispatch(loadNotifications(userId)),
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,

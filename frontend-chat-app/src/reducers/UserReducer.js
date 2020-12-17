@@ -30,6 +30,11 @@ export default function UserReducer(
       };
     case "REMOVE_ERRORS":
       return { ...state, errors: false };
+    case "LOAD_NOTIFICATIONS":
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, notifications: action.payload },
+      };
     case "UPDATE_NOTIFICATION":
       const notifications = state.currentUser.notifications.map((n) =>
         n.id === action.payload.id ? action.payload : n

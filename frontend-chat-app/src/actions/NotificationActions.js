@@ -14,3 +14,11 @@ export function updateNotification(data) {
       .catch((error) => console.log(error));
   };
 }
+export function loadNotifications(userId) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/users/${userId}/notifications/`)
+      .then((resp) => resp.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
+}
