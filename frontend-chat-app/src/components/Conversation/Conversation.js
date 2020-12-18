@@ -58,6 +58,8 @@ class Conversation extends Component {
                 ? this.findConversation().messages
                 : [{ id: 0, content: "No Messages" }]
             }
+            user={this.props.user}
+            loadConversations={this.props.loadConversations}
           />
         </Div>
         <Div>

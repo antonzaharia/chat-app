@@ -21,7 +21,6 @@ export function createConversation(data) {
   };
 }
 export function markAsSeen(user, conversation) {
-  console.log("test", conversation.id);
   return (dispatch) => {
     fetch(
       `http://localhost:3000/users/${user.id}/conversations/${conversation.id}`,
