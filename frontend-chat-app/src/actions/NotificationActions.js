@@ -18,7 +18,7 @@ export function loadNotifications(userId) {
   return (dispatch) => {
     fetch(`http://localhost:3000/users/${userId}/notifications/`)
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => dispatch({ type: "LOAD_NOTIFICATIONS", payload: data }))
       .catch((error) => console.log(error));
   };
 }

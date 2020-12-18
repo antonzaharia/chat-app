@@ -28,8 +28,10 @@ class Conversation extends Component {
       conversation_id: this.props.match.params.id,
       user_id: this.props.user.id,
     };
-    this.props.create(message);
-    this.setState({ input: "" });
+    if (this.state.input.length > 0) {
+      this.props.create(message);
+      this.setState({ input: "" });
+    }
   };
   handleReceivedMessages = (data) => {
     this.props.loadConversations(this.props.user.id);
