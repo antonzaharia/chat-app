@@ -129,7 +129,7 @@ class Header extends React.Component {
           notifications={
             this.props.user
               ? this.props.user.notifications
-              : [{ content: "No Notifications" }]
+              : [{ id: "x", content: "No Notifications" }]
           }
         />
         <Footer />
