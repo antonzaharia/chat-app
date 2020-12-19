@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :conversations 
     resources :notifications
+    get "/:user_id/mark-all-as-seen". to: "notifications#mark_all_as_seen"
   end
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html 

@@ -131,6 +131,7 @@ class Header extends React.Component {
               ? this.props.user.notifications
               : [{ id: "x", content: "No Notifications" }]
           }
+          markAllAsSeen={this.props.markAllAsSeen}
         />
         <Footer />
       </Div>
