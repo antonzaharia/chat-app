@@ -2,10 +2,10 @@ import { Div, Button, SideDrawer, Icon, Text } from "atomize";
 import NotificationLink from "./NotificationLink";
 
 export default function BasicSideDrawer({
-  user,
   isOpen,
   onClose,
   notifications,
+  markAllAsSeen,
 }) {
   return (
     <SideDrawer isOpen={isOpen} onClose={onClose}>
@@ -13,14 +13,27 @@ export default function BasicSideDrawer({
         <Icon name="AlertSolid" color="warning700" />
         <Text p={{ l: "0.5rem", t: "0.25rem" }}>Notifications</Text>
       </Div>
-      <Button
-        onClick={onClose}
-        bg="gray200"
-        textColor="medium"
-        m={{ r: "2rem", b: "1rem" }}
-      >
-        Close
-      </Button>
+      <Div d="flex" justify="space-between">
+        <Button
+          onClick={onClose}
+          bg="gray200"
+          hoverBg="danger800"
+          hoverTextColor="gray100"
+          textColor="medium"
+          m={{ r: "2rem", b: "1rem" }}
+        >
+          Close
+        </Button>
+        <Button
+          onClick={markAllAsSeen}
+          bg="gray200"
+          hoverBg="gray400"
+          textColor="medium"
+          m={{ r: "2rem", b: "1rem" }}
+        >
+          Mark all as seen
+        </Button>
+      </Div>
       <Div d="flex" flexDir="column">
         {notifications.map((n) => (
           <NotificationLink close={onClose} notification={n} key={n.id} />
