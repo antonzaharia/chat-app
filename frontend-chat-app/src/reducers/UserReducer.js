@@ -43,6 +43,11 @@ export default function UserReducer(
         ...state,
         currentUser: { ...state.currentUser, notifications: notifications },
       };
+    case "MARK_ALL_AS_SEEN":
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, notifications: action.payload },
+      };
     default:
       return state;
   }
