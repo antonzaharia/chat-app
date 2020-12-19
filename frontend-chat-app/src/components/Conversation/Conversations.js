@@ -19,7 +19,7 @@ class Conversations extends Component {
   handleReceivedConversation = (conversation) => {
     console.log("New Conversation!", conversation);
     this.setState({ showNotification: true });
-    this.props.loadNotifications(this.props.user.id);
+    // this.props.loadNotifications(this.props.user.id);
     this.props.loadConversations(this.props.user.id);
   };
 

@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
         user = User.find(params[:user_id])
         notifications = user.notifications.map{ |n| NotificationSerializer.new(n)}
         
-        render json: notifications
+        render json: notifications.to_json
     end
 
     def update
