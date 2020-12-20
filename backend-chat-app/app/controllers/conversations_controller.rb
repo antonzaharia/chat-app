@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
     user = User.find(params[:userId])
     reciever = User.find_by(email: params[:email])
     conversation = user.conversations.build
-    if reciever
+    if reciever && reciever.id != user.id
       if conversation.save
         conversation.users << reciever
         notification = reciever.notifications.build(conversation: conversation, content: "You have a new message from #{user.name}")
@@ -21,6 +21,8 @@ class ConversationsController < ApplicationController
      
         render json: conversation, status: :created
       end
+    elsif reciever
+      render json: {errors: "You cannot start a conversation with yourself"}
     else
       render json: {errors: "No user found"}
     end
