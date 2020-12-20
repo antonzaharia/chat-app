@@ -9,9 +9,19 @@ class ConversationsController < ApplicationController
   def create
     user = User.find(params[:userId])
     reciever = User.find_by(email: params[:email])
-    conversation = user.conversations.build
+  
     if reciever && reciever.id != user.id
-      if conversation.save
+      existing_conversation_array = Conversation.joins(:users).where(users: { id: [user.id, reciever.id] })
+      conversation = user.conversations.build
+      if existing_conversation_array.size > 0
+        existing_conversation = existing_conversation_array[0]
+        message = existing_conversation.messages.create(content: params[:message], user: user)
+        serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(existing_conversation)).serializable_hash
+        ActionCable.server.broadcast 'conversations_channel', serialized_data
+
+        render json: existing_conversation
+        
+      elsif conversation.save
         conversation.users << reciever
         notification = reciever.notifications.build(conversation: conversation, content: "You have a new message from #{user.name}")
         notification.save

@@ -9,11 +9,24 @@ export default function UserReducer(
       if (action.payload.errors) {
         return { ...state, errors: action.payload.errors };
       } else {
-        return {
-          ...state,
-          userConversations: [action.payload, ...state.userConversations],
-          errors: false,
-        };
+        let existingConversation = state.userConversations.find(
+          (c) => c.id === action.payload.id
+        );
+        if (existingConversation) {
+          let otherConversations = state.userConversations.filter(
+            (c) => c.id !== existingConversation.id
+          );
+          return {
+            ...state,
+            userConversations: [action.payload, ...otherConversations],
+          };
+        } else {
+          return {
+            ...state,
+            userConversations: [action.payload, ...state.userConversations],
+            errors: false,
+          };
+        }
       }
     case "RECEIVE_MESSAGE":
       const findConversation = state.userConversations.find(
