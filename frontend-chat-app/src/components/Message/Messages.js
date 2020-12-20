@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Message from "./Message";
 import { ActionCableConsumer } from "react-actioncable-provider";
 

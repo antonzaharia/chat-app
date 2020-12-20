@@ -117,6 +117,13 @@ class Header extends React.Component {
         ) : (
           ""
         )}
+        {this.props.conversationErrors ? (
+          <Div textAlign="center" textColor="warning700">
+            <p>{this.props.conversationErrors}</p>
+          </Div>
+        ) : (
+          ""
+        )}
         <Div d="flex">
           <Conversations conversations={this.props.conversations} />
           <Route
@@ -149,5 +156,6 @@ const mapStateToProps = (state) => ({
   errors: state.user.errors,
   user: state.user.currentUser,
   conversations: state.conversations.userConversations,
+  conversationErrors: state.conversations.errors,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

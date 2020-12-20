@@ -1,12 +1,20 @@
-export default function UserReducer(state = { userConversations: [] }, action) {
+export default function UserReducer(
+  state = { userConversations: [], errors: false },
+  action
+) {
   switch (action.type) {
     case "LOAD_CONVERSATIONS":
       return { ...state, userConversations: action.payload };
     case "CREATE_CONVERSATION":
-      return {
-        ...state,
-        userConversations: [action.payload, ...state.userConversations],
-      };
+      if (action.payload.errors) {
+        return { ...state, errors: action.payload.errors };
+      } else {
+        return {
+          ...state,
+          userConversations: [action.payload, ...state.userConversations],
+          errors: false,
+        };
+      }
     case "RECEIVE_MESSAGE":
       const findConversation = state.userConversations.find(
         (c) => c.id === action.payload.message.conversation.id
@@ -37,6 +45,8 @@ export default function UserReducer(state = { userConversations: [] }, action) {
       // return {...state, userConversations: [...filteredConvs]}
       //   console.log(action.payload);
       return state;
+    case "REMOVE_ERRORS":
+      return { ...state, errors: [] };
     default:
       return state;
   }

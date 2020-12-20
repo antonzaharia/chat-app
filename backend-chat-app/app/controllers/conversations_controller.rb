@@ -10,15 +10,19 @@ class ConversationsController < ApplicationController
     user = User.find(params[:userId])
     reciever = User.find_by(email: params[:email])
     conversation = user.conversations.build
-    if conversation.save
-      conversation.users << reciever
-      notification = reciever.notifications.build(conversation: conversation, content: "You have a new message from #{user.name}")
-      notification.save
-      message = conversation.messages.create(content: params[:message], user: user)
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash
-      ActionCable.server.broadcast 'conversations_channel', serialized_data
+    if reciever
+      if conversation.save
+        conversation.users << reciever
+        notification = reciever.notifications.build(conversation: conversation, content: "You have a new message from #{user.name}")
+        notification.save
+        message = conversation.messages.create(content: params[:message], user: user)
+        serialized_data = ActiveModelSerializers::Adapter::Json.new(ConversationSerializer.new(conversation)).serializable_hash
+        ActionCable.server.broadcast 'conversations_channel', serialized_data
      
-      render json: conversation, status: :created
+        render json: conversation, status: :created
+      end
+    else
+      render json: {errors: "No user found"}
     end
   end
     def show
