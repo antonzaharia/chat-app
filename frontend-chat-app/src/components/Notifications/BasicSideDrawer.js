@@ -6,6 +6,7 @@ export default function BasicSideDrawer({
   onClose,
   notifications,
   markAllAsSeen,
+  user,
 }) {
   return (
     <SideDrawer isOpen={isOpen} onClose={onClose}>
@@ -23,15 +24,6 @@ export default function BasicSideDrawer({
           m={{ r: "2rem", b: "1rem" }}
         >
           Close
-        </Button>
-        <Button
-          onClick={markAllAsSeen}
-          bg="gray200"
-          hoverBg="gray400"
-          textColor="medium"
-          m={{ r: "2rem", b: "1rem" }}
-        >
-          Mark all as seen
         </Button>
       </Div>
       <Div d="flex" flexDir="column">

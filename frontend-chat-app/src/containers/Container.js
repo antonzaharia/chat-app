@@ -14,7 +14,6 @@ import Conversation from "../components/Conversation/Conversation";
 import { Route } from "react-router-dom";
 import ConversationForm from "../components/Conversation/ConversationForm";
 import { makeNotificationNumber } from "../helpers";
-import { markAllAsSeen } from "../actions/NotificationActions";
 
 class Header extends React.Component {
   constructor(props) {
@@ -142,7 +141,6 @@ class Header extends React.Component {
               ? this.props.user.notifications
               : [{ id: "x", content: "No Notifications" }]
           }
-          markAllAsSeen={this.props.markAllAsSeen}
         />
         <Footer />
       </Div>
@@ -152,7 +150,6 @@ class Header extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
   removeErrors: () => dispatch({ type: "REMOVE_ERRORS" }),
-  markAllAsSeen: (userId) => dispatch(markAllAsSeen(userId)),
 });
 const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,

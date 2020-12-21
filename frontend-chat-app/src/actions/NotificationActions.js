@@ -22,11 +22,3 @@ export function loadNotifications(userId) {
       .catch((error) => console.log(error));
   };
 }
-export function markAllAsSeen(userId) {
-  return (dispatch) => {
-    fetch(`http://localhost:3000/users/${userId}/mark-all-as-seen`)
-      .then((resp) => resp.json())
-      .then((data) => dispatch({ type: "MARK_ALL_AS_SEEN", payload: data }))
-      .catch((error) => console.log(error));
-  };
-}
