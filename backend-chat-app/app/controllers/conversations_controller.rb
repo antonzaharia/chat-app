@@ -11,8 +11,7 @@ class ConversationsController < ApplicationController
     reciever = User.find_by(email: params[:email])
   
     if reciever && reciever.id != user.id
-      existing_conversation_array = Conversation.joins(:users).where(users: { id: [user.id, reciever.id] })
-      byebug
+      existing_conversation_array = user.conversations.select{ |c| c.users.pluck(:id).include?(reciever.id) }
       conversation = user.conversations.build
       if existing_conversation_array.size > 0
         existing_conversation = existing_conversation_array[0]
