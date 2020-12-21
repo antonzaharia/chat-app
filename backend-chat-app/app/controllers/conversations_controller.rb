@@ -2,8 +2,9 @@ class ConversationsController < ApplicationController
   include CurrentUserConcern
   def index
     user = User.find(params[:user_id])
-    conversations = user.conversations.uniq{ |c| c.id }.reverse
-    render json: conversations
+    conversations = user.conversations.uniq{ |c| c.id }.sort_by &:updated_at
+
+    render json: conversations.reverse
   end
 
   def create

@@ -4,7 +4,10 @@ import { create } from "../../actions/MessagesActions";
 import { connect } from "react-redux";
 import { Input, Button } from "atomize";
 import Messages from "../Message/Messages";
-import { loadConversations } from "../../actions/ConversationActions";
+import {
+  loadConversations,
+  markAsSeen,
+} from "../../actions/ConversationActions";
 
 class Conversation extends Component {
   constructor(props) {
@@ -12,9 +15,6 @@ class Conversation extends Component {
     this.state = {
       input: "",
     };
-  }
-  componentDidMount() {
-    console.log(this.props.match.params.id);
   }
   handleChange = (event) => {
     this.setState({ input: event.target.value });
@@ -97,6 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
   loadConversations: (userId) => dispatch(loadConversations(userId)),
   receiveMessage: (message) =>
     dispatch({ type: "RECEIVE_MESSAGE", payload: message }),
+  markAsSeen: (user, conversation) => dispatch(markAsSeen(user, conversation)),
 });
 const mapStateToProps = (state) => ({
   user: state.user.currentUser,
