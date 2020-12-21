@@ -13,6 +13,9 @@ class Conversation extends Component {
       input: "",
     };
   }
+  componentDidMount() {
+    console.log(this.props.match.params.id);
+  }
   handleChange = (event) => {
     this.setState({ input: event.target.value });
   };

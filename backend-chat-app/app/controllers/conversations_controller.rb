@@ -12,6 +12,7 @@ class ConversationsController < ApplicationController
   
     if reciever && reciever.id != user.id
       existing_conversation_array = Conversation.joins(:users).where(users: { id: [user.id, reciever.id] })
+      byebug
       conversation = user.conversations.build
       if existing_conversation_array.size > 0
         existing_conversation = existing_conversation_array[0]

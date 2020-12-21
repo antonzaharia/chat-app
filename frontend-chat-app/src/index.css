@@ -71,3 +71,6 @@ code {
   font-size: 10px;
   float: right;
 }
+.logout-btn {
+  color: white;
+}

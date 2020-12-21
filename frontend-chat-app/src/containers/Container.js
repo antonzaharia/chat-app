@@ -8,6 +8,7 @@ import Conversations from "../components/Conversation/Conversations";
 import Footer from "./Footer";
 import RegButons from "../components/RegButons";
 import BasicSideDrawer from "../components/Notifications/BasicSideDrawer";
+import { Link } from "react-router-dom";
 
 import Conversation from "../components/Conversation/Conversation";
 import { Route } from "react-router-dom";
@@ -92,7 +93,9 @@ class Header extends React.Component {
                 rounded="circle"
                 onClick={() => this.props.logout()}
               >
-                Logout
+                <Link className="logout-btn" to="/">
+                  Logout
+                </Link>
               </Button>
             </Div>
           )}
